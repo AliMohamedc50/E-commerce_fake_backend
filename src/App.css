@@ -1,0 +1,88 @@
+.navbar .item {
+  font-size: 18px;
+} 
+
+.footer .item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  text-align: justify;
+  font-size: 14px;
+}
+.footer .item h1 {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+
+/* .slider {
+  height: calc(100vh - 80px);
+  width: 100vw;
+  position: relative;
+}
+.slider .containerr {
+  width: 300vw;
+  height: 100%;
+  display: flex;
+  transition: all 1s ease;
+
+}
+.slider .containerr img {
+  width: 100vw;
+  height: 100%;
+  object-fit: inherit;
+}
+.icons {
+  position: absolute;
+  display: flex;
+  bottom: 100px;
+  width: fit-content;
+  gap: 10px;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.icons .icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  border: 1px solid rgb(61, 61, 61);
+  justify-content: center;
+  cursor: pointer;
+} */
+
+
+.swiper {
+  width: 100%;
+  height: calc(100vh - 80px);
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: inherit;
+}
+
+.swiper {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.image:hover .secondimg {
+  z-index: -5;
+}
