@@ -3,6 +3,7 @@ import React from 'react'
 import Slider from '../../components/slider/Slider'
 import Featurproduct from '../../components/featurproduct/Featurproduct';
 import Categories from '../../components/categories/Categories';
+import Contact from '../../components/contact/Contact';
 
 const Home = () => {
   return (
@@ -11,6 +12,7 @@ const Home = () => {
       <Featurproduct type="Featured" />
       <Categories />
       <Featurproduct type="trending" />
+      <Contact />
     </div>
   );
 }
