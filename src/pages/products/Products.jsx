@@ -15,7 +15,7 @@ const Products = () => {
 
   return (
     <div className="products flex">
-      <div className="left mt-5 mx-14  ">
+      <div className="left mt-5 mx-14  sticky h-full top-6 ">
         <div>
           <Typography variant="h5" color="initial">
             Product Categories
