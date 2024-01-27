@@ -3,7 +3,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <div className="footer mx-48 mt-24 mb-6">
+    <div className="footer mx-48 mt-24 mb-6 ">
       <div className=" flex gap-12">
         <div className="item">
           <h1>categories</h1>
