@@ -19,8 +19,6 @@ function Layout() {
   )
 }
 
-
-
 const router = createBrowserRouter([
   {
     path: "/",

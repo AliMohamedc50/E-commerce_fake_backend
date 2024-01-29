@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import Typography from '@mui/material/Typography'
 import { Button } from '@mui/material'
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
+import BalanceIcon from "@mui/icons-material/Balance";
+import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 const Product = () => {
 
   const [selectImg, setSelectImg] = useState(0)
@@ -47,8 +49,8 @@ const Product = () => {
    },
  ];
   return (
-    <div className="product flex gap-10 flex-1 m-auto">
-      <div className="left flex gap-4">
+    <div className="product w-10/12 flex gap-10 flex-1 m-auto">
+      <div className="left flex flex-1 gap-4">
         <div className="left  flex flex-col	gap-3 ">
           <img
             src={data[0].img}
@@ -63,32 +65,60 @@ const Product = () => {
             onClick={() => setSelectImg(1)}
           />
         </div>
-        <div className="right">
-          <img src={data[selectImg].img} alt="" />
+        <div className="right w-full">
+          <img className='w-full h-full' src={data[selectImg].img} alt="" />
         </div>
       </div>
-      <div className="right flex-1 max-w-lg">
+      <div className="right flex-1 ">
         <Typography className="title" variant="h3" color="initial">
           {data[1].title}
         </Typography>
-        <h3 className='text-blue-500 text-2xl my-5'>
-          ${data[1].price}
-        </h3>
-        
+        <h3 className="text-blue-500 text-2xl my-5">${data[1].price}</h3>
+
         <Typography className="title" variant="p" color="initial">
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate
           non quae exercitationem provident sequi, consequuntur reiciendis
           voluptates quidem, assumenda quasi voluptatem vitae eius praesentium
           nisi quibusdam corrupti corporis. Error, nesciunt.
         </Typography>
-        <div className="flex my-5">
-          <Button variant="contained"  onClick={() => setQuantity((prev => prev === 1 ? 1 : prev - 1) )}>-</Button>
+        <div className="flex mt-4 mb-8">
+          <Button
+            variant="contained"
+            onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))}
+          >
+            -
+          </Button>
           <p className="py-2 px-5 bg-slate-200">{quantity}</p>
-          <Button variant="contained"  onClick={() => setQuantity((prev => prev + 1) )}>+</Button>
+          <Button
+            variant="contained"
+            onClick={() => setQuantity((prev) => prev + 1)}
+          >
+            +
+          </Button>
         </div>
-        <Button sx={{width: 300}} variant="contained" startIcon={<AddShoppingCartIcon />}>
+        <Button
+          sx={{ width: 220 }}
+          variant="contained"
+          startIcon={<AddShoppingCartIcon />}
+        >
           ADD TO CART
         </Button>
+        <div className="my-3 flex gap-3">
+          <Button
+            sx={{ width: 200 }}
+            variant="outlined"
+            startIcon={<FavoriteBorderIcon />}
+          >
+            ADD TO WISH LIST
+          </Button>
+          <Button
+            sx={{ width: 200 }}
+            variant="outlined"
+            startIcon={<BalanceIcon />}
+          >
+            ADD TO COMPARE
+          </Button>
+        </div>
       </div>
     </div>
   );

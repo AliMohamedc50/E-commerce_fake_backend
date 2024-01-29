@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useState } from 'react'
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 // import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -11,6 +11,7 @@ import Badge from "@mui/material/Badge";
 import { styled } from "@mui/material/styles";
 import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
+import Cart from '../cart/Cart';
 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -24,8 +25,9 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 
 const Navbar = () => {
+  const [open , setOpen] = useState(true);
   return (
-    <div className="navbar h-20  ">
+    <div className="navbar h-20 relative">
       <div className="wrapper flex justify-between py-2 px-7 ">
         <div className="left flex items-center gap-6">
           <div className="item flex items-center">
@@ -47,11 +49,14 @@ const Navbar = () => {
           </div>
           <div className="item">
             <Link to="/products/3">Children</Link>
+
           </div>
         </div>
 
         <div className="center">
-            <Link className='text-3xl ' to="/">LAMOSTORE</Link>
+          <Link className="text-3xl " to="/">
+            LAMOSTORE
+          </Link>
         </div>
 
         <div className="right flex items-center gap-6">
@@ -77,7 +82,7 @@ const Navbar = () => {
             <IconButton>
               <FavoriteBorderOutlinedIcon />
             </IconButton>
-            <IconButton aria-label="cart">
+            <IconButton  aria-label="cart" onClick={() => setOpen(!open)}>
               <StyledBadge badgeContent={4} color="secondary">
                 <ShoppingCartIcon />
               </StyledBadge>
@@ -85,6 +90,9 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+                {
+                  open && <Cart />
+                }
     </div>
   );
 }
