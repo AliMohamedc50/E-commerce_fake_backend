@@ -11,7 +11,7 @@ const Home = () => {
       <Slider />
       <Featurproduct type="Featured" />
       <Categories />
-      <Featurproduct type="trending" />
+      <Featurproduct type="trinding" />
       <Contact />
     </div>
   );

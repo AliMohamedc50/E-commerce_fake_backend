@@ -1,47 +1,32 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from '../card/Card';
+import axios from 'axios';
 
 const Featurproduct = ({type}) => {
-    const data = [
-      {
-        id: 1,
-        img: "https://images.pexels.com/photos/18553528/pexels-photo-18553528/free-photo-of-man-with-a-stubble-standing-with-his-arm-reached-out.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        img2: "https://images.pexels.com/photos/18553532/pexels-photo-18553532/free-photo-of-man-with-a-stubble-sitting-at-the-table.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        title: "for test",
-        isnew: false,
-        oldprice: "19",
-        price: "12",
-      },
-      {
-        id: 2,
-        img: "https://images.pexels.com/photos/15952334/pexels-photo-15952334/free-photo-of-young-man-with-dyed-platinum-hair-in-a-beige-t-shirt.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        img2: "https://images.pexels.com/photos/15952331/pexels-photo-15952331/free-photo-of-young-man-with-dyed-platinum-hair-in-a-beige-t-shirt.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        title: "for test",
-        isnew: true,
-        oldprice: "19",
-        price: "12",
-      },
-      {
-        id: 3,
-        img: "https://images.pexels.com/photos/1188748/pexels-photo-1188748.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        img2: "https://images.pexels.com/photos/11569311/pexels-photo-11569311.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        title: "for test",
-        isnew: false,
-        oldprice: "19",
-        price: "12",
-      },
-      {
-        id: 4,
-        img: "https://images.pexels.com/photos/12730638/pexels-photo-12730638.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        img2: "https://images.pexels.com/photos/16060730/pexels-photo-16060730/free-photo-of-man-wearing-a-casual-trendy-outfit-and-sunglasses.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        title: "for test",
-        isnew: true,
-        oldprice: "19",
-        price: "12",
-      },
-    ];
+  const  apiToken = "00bbc7a97bb6fe7a9c75f3f912fd52410768fb953f4a563cad3d10418dc2e7b404f40789cde1f150c715632572741a81037df3db4eb7a916729e763f23e5fa167d5de036bd0833bfec7c581b162463098cb3e993e1a85efeb1bffed6cc495963fc3a283a135d03529f31d373317f3d2e9b22a3eb621c6e8ee2fd00eca1a9f3b8"
+  const apiUrl = "http://localhost:1337/api";
+
+    const [data, setData] = useState([])
+
+    useEffect(()=> {
+      const fechproduct = async () => {
+        try {
+          const res = await axios.get(apiUrl + `/products?populate=*&[filters] [type] [$eq]=${type}`, {
+            headers: {
+              Authorization: "bearer " + apiToken,
+            },
+          });
+            setData(res.data.data);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      fechproduct();
+    },[])
+
+    console.log(data[0]?.attributes.img.data.attributes.url);
   return (
     <div className="my-24 mx-48">
       <div className="top flex justify-center items-center mb-12">
@@ -56,7 +41,7 @@ const Featurproduct = ({type}) => {
       </div>
       <div className="bottom flex justify-center gap-12">
         {
-            data.map((item) => (
+            data?.map((item) => (
                 <Card item={item} key={item.id} />
             ))
         }

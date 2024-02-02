@@ -25,7 +25,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 
 const Navbar = () => {
-  const [open , setOpen] = useState(true);
+  const [open , setOpen] = useState(false);
   return (
     <div className="navbar h-20 relative">
       <div className="wrapper flex justify-between py-2 px-7 ">
