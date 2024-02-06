@@ -7,16 +7,18 @@ import Product from "./pages/product/Product";
 
 import React from 'react'
 import Footer from "./components/footer/Footer";
-import Navbar from "./components/navbar/Navbar";
+import  {Navbar} from "./components/navbar/Navbar";
 import "./App.css"
+import DrawerAppBar from "./components/navbar/Navbar";
 function Layout() {
   return (
     <div>
-      <Navbar />
+      <DrawerAppBar />
+      {/* <Navbar /> */}
       <Outlet />
       <Footer />
     </div>
-  )
+  );
 }
 
 const router = createBrowserRouter([

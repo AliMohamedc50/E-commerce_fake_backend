@@ -43,9 +43,9 @@ const Listt = () => {
    ];
   return (
     <div className='flex flex-wrap justify-between gap-3'>
-      {data.map((item) => (
+      {/* {data.map((item) => (
         <Card item={item} key={item.id} />
-      ))}
+      ))} */}
     </div>
   );
 }
