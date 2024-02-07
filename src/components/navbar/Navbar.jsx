@@ -118,7 +118,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 
 const drawerWidth = 240;
-const navItems = ["Home", "About", "Contact", "HomePage"];
+const navItems = ["Home", "About", "Contact"];
 const navItems2 = ["Children", "Men", "Women"];
 
 function DrawerAppBar(props) {
@@ -171,12 +171,12 @@ function DrawerAppBar(props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-
+  const [open, setOpen] = useState(false);
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav">
-        <Toolbar>
+      <AppBar component="nav" >
+        <Toolbar >
           <Typography
             variant="h6"
             component="div"
@@ -195,20 +195,44 @@ function DrawerAppBar(props) {
           >
             <MenuIcon />
           </IconButton>
+
           <Box sx={{ display: { xs: "none", sm: "none", md: "flex" } }}>
             {navItems2.map((item) => (
               <Button key={item} sx={{ color: "#fff" }}>
                 <Link to="/">{item}</Link>
               </Button>
             ))}
-            <Divider orientation="horizontal" variant="middle" flexItem />
-
+            <Divider orientation="vertical" variant="middle" flexItem />
             {navItems.map((item) => (
               <Button key={item} sx={{ color: "#fff" }}>
                 <Link to="/">{item}</Link>
               </Button>
             ))}
           </Box>
+          <Divider orientation="vertical" variant="middle" flexItem />
+
+          <div className="iocns">
+            <IconButton color="inherit">
+              <SearchIcon />
+            </IconButton>
+            <IconButton color="inherit">
+              <PersonOutlineOutlinedIcon />
+            </IconButton>
+            <IconButton color="inherit">
+              <FavoriteBorderOutlinedIcon />
+            </IconButton>
+            <IconButton
+              color="inherit"
+              aria-label="cart"
+              onClick={() => setOpen(!open)}
+              >
+              <StyledBadge badgeContent={4} color="warning">
+                <ShoppingCartIcon />
+              </StyledBadge>
+            </IconButton>
+          </div>
+
+          {open && <Cart />}
         </Toolbar>
       </AppBar>
       <nav>
@@ -221,7 +245,7 @@ function DrawerAppBar(props) {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: "block", sm: "none" },
+            display: { xs: "block", sm: "block" },
             "& .MuiDrawer-paper": {
               boxSizing: "border-box",
               width: drawerWidth,

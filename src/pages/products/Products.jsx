@@ -1,49 +1,72 @@
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useState } from 'react'
 import Typography from '@mui/material/Typography'
-import { Checkbox, FormControlLabel, FormGroup } from '@mui/material';
+import { Box, Checkbox, FormControlLabel, FormGroup } from '@mui/material';
 import RangeSlider from './RangeSlider';
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControl from "@mui/material/FormControl";
 import FormLabel from "@mui/material/FormLabel";
 import Listt from '../../components/list/Listt';
+import { useParams } from 'react-router-dom';
+import useFetch from '../../hooks/useFetch';
 
 
 
 const Products = () => {
 
+  const catId = parseInt(useParams().id);
+  const [maxprice, setMaxPrice] = useState(1000)
+  const [sort, setSort] = useState("asc");
+  const [selectedSubCategory, setSelectedSubCategory] = useState([]);
+  const { data, loading, errorr } = useFetch(
+    `/sub-categories?[filters] [caregories] [id] [$eq]=${catId}`
+  );
+
+  const handleChange = (event) => {
+    const value = event.target.value;
+    const isChecked = event.target.checked;
+        setSelectedSubCategory(
+      isChecked
+        ? [...selectedSubCategory, value]
+        // : null
+        : selectedSubCategory.filter((item) => item !== value ))
+  };
+
+  console.log([...selectedSubCategory]);
+
   return (
-    <div className="products flex">
+    <Box sx={{ position: "relative" }} className="products flex ">
       <div className="left mt-5 mx-14  sticky h-full top-6 ">
         <div>
           <Typography variant="h5" color="initial">
             Product Categories
           </Typography>
-          <FormGroup>
-            <FormControlLabel
-              required
-              control={<Checkbox size="small" />}
-              label="Shoes"
-            />
-            <FormControlLabel
-              required
-              control={<Checkbox size="small" />}
-              label="Skirts"
-            />
-            <FormControlLabel
-              required
-              control={<Checkbox size="small" />}
-              label="Coats"
-            />
-          </FormGroup>
+          {
+            <FormGroup>
+              {data?.map((ele) => (
+                <FormControlLabel
+                  required
+                  key={ele.id}
+                  control={
+                    <Checkbox
+                      onChange={handleChange}
+                      value={ele.id}
+                      size="small"
+                    />
+                  }
+                  label={ele.attributes.title}
+                />
+              ))}
+            </FormGroup>
+          }
         </div>
 
         <div>
           <Typography variant="h5" color="initial">
             Filter by Price
           </Typography>
-          <RangeSlider />
+          <RangeSlider maxprice={maxprice} />
         </div>
 
         <div>
@@ -56,12 +79,20 @@ const Products = () => {
             >
               <FormControlLabel
                 value="male"
-                control={<Radio size="small" />}
+                control={
+                  <Radio
+                  onChange={(e) => setSort("asc")}
+                  
+                    size="small"
+                  />
+                }
                 label="Price (Lowest first)"
               />
               <FormControlLabel
                 value="other"
-                control={<Radio size="small" />}
+                control={
+                  <Radio onChange={(e) => setSort("desc")} size="small" />
+                }
                 label="Price (hightest first)"
               />
             </RadioGroup>
@@ -77,10 +108,15 @@ const Products = () => {
           />
         </div>
         <div className="bottom mt-7">
-          <Listt />
+          <Listt
+            subCats={selectedSubCategory}
+            sort={sort}
+            maxprice={maxprice}
+            catId={catId}
+          />
         </div>
       </div>
-    </div>
+    </Box>
   );
 }
 
