@@ -56,7 +56,8 @@
 
 
 .swiper,
-.products {
+.products,
+.product {
   top: 64px;
   width: 100%;
   height: calc(100vh - 66px);
