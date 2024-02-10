@@ -69,7 +69,7 @@ const Categories = () => {
           style={{ transform: "translate(-50%, -50%)" }}
           className="absolute top-1/2 left-1/2  bg-slate-100 py-2 px-4"
         >
-          <Link to={"/products/1"}> MEN</Link>
+          <Link to={"/products/2"}> MEN</Link>
         </button>
       </div>
       <div className="x overflow-hidden relative">

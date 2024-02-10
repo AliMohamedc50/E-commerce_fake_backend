@@ -1,33 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
-import initialState from "./initialState";
-import getProducts from "./thunk/getProducts";
 
+const initialState = {
+  products: [],
+};
 
-
-const productsSlice = createSlice({
-  name: "products",
+export const cartSlice = createSlice({
+  name: "cart",
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(getProducts.pending, (state) => {
-      state.loading = true;
-      state.error = null;
-    });
-    builder.addCase(getProducts.fulfilled, (state, action) => {
-      state.loading = false;
-      state.records = action.payload;
-      // console.log(action.payload[1]);
-    });
-    builder.addCase(getProducts.rejected, (state, action) => {
-      state.loading = false;
-      console.log(action.payload);
-      state.error = action.payload;
-    });
+  reducers: {
+    addToCart: (state, action) => {
+      const item = state.products.find((item) => item.id === action.payload.id);
+      if (item) {
+        item.quantity += action.payload.quantity;
+      } else {
+        state.products.push(action.payload);
+      }
+    },
+    removeItem: (state, action) => {
+      state.products = state.products.filter(
+        (item) => item.id !== action.payload
+      );
+    },
+    resetCart: (state) => {
+      state.products = [];
+    },
   },
 });
 
+// Action creators are generated for each case reducer function
+export const { addToCart, removeItem, resetCart } = cartSlice.actions;
 
-
-export { getProducts };
-
-export default productsSlice.reducer;
+export default cartSlice.reducer;

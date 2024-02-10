@@ -7,15 +7,17 @@ import BalanceIcon from "@mui/icons-material/Balance";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
+import { useDispatch } from 'react-redux';
+
 const Product = () => {
-      const upload_url = "http://localhost:1337";
+          const upload_url = "http://localhost:1337";
 
   const id = useParams().id
   const { data, loading, errorr } = useFetch(`/products/${id}?populate=*`);
   const [selectImg, setSelectImg] = useState("img")
   const [quantity, setQuantity] = useState(1)
 
-console.log(selectImg);
+
   return (
     <div className="product relative top-28 w-10/12 flex gap-10 flex-1 m-auto">
       <div className="left flex flex-1 gap-4">
@@ -33,21 +35,27 @@ console.log(selectImg);
             onClick={() => setSelectImg("img2")}
           />
         </div>
-        <Box sx={{height: "80vh", overflow: "hidden"}} className="right w-full ">
-          <img className='w-full h-full object-cover' src={upload_url + data?.attributes?.[selectImg]?.data?.attributes?.url} alt="" />
+        <Box
+          sx={{ height: "80vh", overflow: "hidden" }}
+          className="right w-full "
+        >
+          <img
+            className="w-full h-full object-cover"
+            src={
+              upload_url + data?.attributes?.[selectImg]?.data?.attributes?.url
+            }
+            alt=""
+          />
         </Box>
       </div>
       <div className="right flex-1 ">
         <Typography className="title" variant="h3" color="initial">
-          {/* {data[1].title} */}uiui
+          {data?.attributes?.title}
         </Typography>
-        {/* <h3 className="text-blue-500 text-2xl my-5">${data[1].price}</h3> */}
-        uiyuiy
+        <h3 className="text-blue-500 text-2xl my-5">{data?.attributes?.price}</h3>
+
         <Typography className="title" variant="p" color="initial">
-          Lorem ipsum, dolor sit amet consectetur adipisicing elit. Cupiditate
-          non quae exercitationem provident sequi, consequuntur reiciendis
-          voluptates quidem, assumenda quasi voluptatem vitae eius praesentium
-          nisi quibusdam corrupti corporis. Error, nesciunt.
+          {data?.attributes?.desc}
         </Typography>
         <div className="flex mt-4 mb-8">
           <Button
