@@ -8,6 +8,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import { useDispatch } from 'react-redux';
+import {addToCart} from "../../Store/product/productSlice"
 
 const Product = () => {
           const upload_url = "http://localhost:1337";
@@ -16,7 +17,7 @@ const Product = () => {
   const { data, loading, errorr } = useFetch(`/products/${id}?populate=*`);
   const [selectImg, setSelectImg] = useState("img")
   const [quantity, setQuantity] = useState(1)
-
+const dispatch = useDispatch()
 
   return (
     <div className="product relative top-28 w-10/12 flex gap-10 flex-1 m-auto">
@@ -52,7 +53,9 @@ const Product = () => {
         <Typography className="title" variant="h3" color="initial">
           {data?.attributes?.title}
         </Typography>
-        <h3 className="text-blue-500 text-2xl my-5">{data?.attributes?.price}</h3>
+        <h3 className="text-blue-500 text-2xl my-5">
+          {data?.attributes?.price}
+        </h3>
 
         <Typography className="title" variant="p" color="initial">
           {data?.attributes?.desc}
@@ -60,12 +63,14 @@ const Product = () => {
         <div className="flex mt-4 mb-8">
           <Button
             variant="contained"
+            disabled={loading ? true : false}
             onClick={() => setQuantity((prev) => (prev === 1 ? 1 : prev - 1))}
           >
             -
           </Button>
           <p className="py-2 px-5 bg-slate-200">{quantity}</p>
           <Button
+            disabled={loading ? true : false}
             variant="contained"
             onClick={() => setQuantity((prev) => prev + 1)}
           >
@@ -74,6 +79,22 @@ const Product = () => {
         </div>
         <Button
           sx={{ width: 220 }}
+          onClick={() =>
+            dispatch(
+              addToCart({
+                id: data.id,
+                title: data.attributes.title,
+                desc: data.attributes.desc,
+                price: data.attributes.price,
+                img: data.attributes.img.data.attributes.url,
+                quantity,
+              })
+            )
+          }
+          // {
+          //   loading ? disabled : null
+          // }
+          disabled={loading ? true : false}
           variant="contained"
           startIcon={<AddShoppingCartIcon />}
         >

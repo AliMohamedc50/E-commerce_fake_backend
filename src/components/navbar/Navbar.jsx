@@ -116,6 +116,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import Toolbar from "@mui/material/Toolbar";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { useSelector } from 'react-redux';
 
 const drawerWidth = 240;
 const navItems = ["Home", "About", "Contact"];
@@ -124,6 +125,7 @@ const navItems2 = ["Children", "Men", "Women"];
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const { products } = useSelector((state) => state.cartSlice);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -175,8 +177,8 @@ function DrawerAppBar(props) {
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav" >
-        <Toolbar >
+      <AppBar component="nav">
+        <Toolbar>
           <Typography
             variant="h6"
             component="div"
@@ -225,8 +227,8 @@ function DrawerAppBar(props) {
               color="inherit"
               aria-label="cart"
               onClick={() => setOpen(!open)}
-              >
-              <StyledBadge badgeContent={4} color="warning">
+            >
+              <StyledBadge badgeContent={products?.length} color="warning">
                 <ShoppingCartIcon />
               </StyledBadge>
             </IconButton>
