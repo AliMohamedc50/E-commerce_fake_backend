@@ -7,7 +7,6 @@ import Product from "./pages/product/Product";
 
 import React from 'react'
 import Footer from "./components/footer/Footer";
-import  {Navbar} from "./components/navbar/Navbar";
 import "./App.css"
 import DrawerAppBar from "./components/navbar/Navbar";
 function Layout() {

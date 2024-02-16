@@ -15,6 +15,7 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Pagination, Navigation } from "swiper/modules";
+import { useMediaQuery } from '@mui/material';
 
 const Slider = () => {
   
@@ -23,28 +24,27 @@ const Slider = () => {
         "https://images.pexels.com/photos/949670/pexels-photo-949670.jpeg?auto=compress&cs=tinysrgb&w=1600",
         "https://images.pexels.com/photos/1549200/pexels-photo-1549200.jpeg?auto=compress&cs=tinysrgb&w=1600",
     ];
+    console.log(useMediaQuery("(min-width:600px)"));
   return (
-    
-
-
     <Swiper
-        slidesPerView={1}
-        spaceBetween={30}
-        loop={true}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Pagination, Navigation]}
-        className="mySwiper"
-      >
-        <SwiperSlide><img src={data[0]} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={data[1]} alt="" /></SwiperSlide>
-        <SwiperSlide><img src={data[2]} alt="" /></SwiperSlide>
+      slidesPerView={1}
+      spaceBetween={30}
+      loop={true}
+      pagination={{
+        clickable: true,
+      }}
+      navigation={true}
+      modules={[Pagination, Navigation]}
+      className="mySwiper"
+    >
 
-      </Swiper>
-    
-  )
+      {data?.map((item, i) => (
+        <SwiperSlide key={item}>
+          <img  src={data[i]} alt="" />
+        </SwiperSlide>
+      ))}
+    </Swiper>
+  );
 }
 
 export default Slider
