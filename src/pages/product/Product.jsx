@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import Typography from '@mui/material/Typography'
 import { Box, Button } from '@mui/material'
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
@@ -9,15 +9,37 @@ import { useParams } from 'react-router-dom';
 import useFetch from '../../hooks/useFetch';
 import { useDispatch } from 'react-redux';
 import {addToCart} from "../../Store/product/productSlice"
+import CustomizedSnackbars from '../../components/alert/Alert';
 
 const Product = () => {
           const upload_url = "http://localhost:1337";
+
+          const childRef = useRef(null);
+
+          const [alertText, setAlertText] = useState(null);
 
   const id = useParams().id
   const { data, loading, errorr } = useFetch(`/products/${id}?populate=*`);
   const [selectImg, setSelectImg] = useState("img")
   const [quantity, setQuantity] = useState(1)
 const dispatch = useDispatch()
+
+const handelShoppingCart  = () => {
+ dispatch(
+              addToCart({
+                id: data.id,
+                title: data.attributes.title,
+                desc: data.attributes.desc,
+                price: data.attributes.price,
+                img: data.attributes.img.data.attributes.url,
+                quantity,
+              })
+              );
+              // handleClick();
+    childRef.current.handleClick();
+    setAlertText("You have added the product to the cart");
+}
+
 
   return (
     <div className="product relative top-28 w-10/12 flex gap-10 flex-1 m-auto">
@@ -56,7 +78,6 @@ const dispatch = useDispatch()
         <h3 className="text-blue-500 text-2xl my-5">
           {data?.attributes?.price}
         </h3>
-
         <Typography className="title" variant="p" color="initial">
           {data?.attributes?.desc}
         </Typography>
@@ -79,27 +100,27 @@ const dispatch = useDispatch()
         </div>
         <Button
           sx={{ width: 220 }}
-          onClick={() =>
-            dispatch(
-              addToCart({
-                id: data.id,
-                title: data.attributes.title,
-                desc: data.attributes.desc,
-                price: data.attributes.price,
-                img: data.attributes.img.data.attributes.url,
-                quantity,
-              })
-            )
-          }
-          // {
-          //   loading ? disabled : null
-          // }
+          onClick={() => handelShoppingCart()}
           disabled={loading ? true : false}
           variant="contained"
           startIcon={<AddShoppingCartIcon />}
         >
           ADD TO CART
         </Button>
+        <CustomizedSnackbars ref={childRef} alertText={alertText} />
+
+        {/* alert for add product in cart */}
+        {/* <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+          <Alert
+            onClose={handleClose}
+            severity="success"
+            variant="filled"
+            sx={{ width: "100%" }}
+          >
+            This is a success Alert inside a Snackbar!
+          </Alert>
+        </Snackbar> */}
+
         <div className="my-3 flex gap-3">
           <Button
             sx={{ width: 200 }}
@@ -114,6 +135,10 @@ const dispatch = useDispatch()
             startIcon={<BalanceIcon />}
           >
             ADD TO COMPARE
+            {/* {open && console.log(<testcall />)} */}
+            {/* {open && <Testcall />} */}
+            {/* {open && "grdrgdrrrrrrrrrrrrrrrgg"} */}
+            {/* <testcall /> */}
           </Button>
         </div>
       </div>

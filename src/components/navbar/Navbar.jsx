@@ -1,37 +1,30 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from 'react'
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-// import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import React, { useState } from "react";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import { Link } from 'react-router-dom';
-import Badge from "@mui/material/Badge";
+import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import IconButton from "@mui/material/IconButton";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Cart from '../cart/Cart';
-// import * as React from "react";
-import PropTypes from "prop-types";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
+import Cart from "../cart/Cart";
 import CssBaseline from "@mui/material/CssBaseline";
-import Divider from "@mui/material/Divider";
-import Drawer from "@mui/material/Drawer";
-// import IconButton from "@mui/material/IconButton";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
-import ListItemButton from "@mui/material/ListItemButton";
-import ListItemText from "@mui/material/ListItemText";
 import MenuIcon from "@mui/icons-material/Menu";
-import Toolbar from "@mui/material/Toolbar";
-import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
-import { useSelector } from 'react-redux';
-
-
-
-
+import { useSelector } from "react-redux";
+import {
+  IconButton,
+  Box,
+  Divider,
+  Drawer,
+  Badge,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  Button,
+  Toolbar,
+  Typography,
+  AppBar,
+} from "@mui/material";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -49,7 +42,6 @@ const newLocal = [
   { cat: "Men", path: "2" },
   { cat: "Women", path: "1" },
 ];
-const navItems2 = newLocal;
 
 function DrawerAppBar(props) {
   const { window } = props;
@@ -62,21 +54,23 @@ function DrawerAppBar(props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <div className="center py-2">
-        <Link className="text-3xl  " to="/">
-          LAMOSTORE
+      <Box sx={{ paddingY: "8px" }}>
+        <Link to="/">
+          <Typography variant="h4" color="initial">
+            LAMOSTORE
+          </Typography>
         </Link>
-      </div>
+      </Box>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <Link to="/">
+        {navItems.map((item, i) => (
+          <Link key={i} to="/">
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: "start" }}>
                 <ListItemText primary={item} />
-              </Link>
-            </ListItemButton>
-          </ListItem>
+              </ListItemButton>
+            </ListItem>
+          </Link>
         ))}
         <Divider orientation="horizontal" variant="middle" flexItem />
         <Typography
@@ -87,14 +81,14 @@ function DrawerAppBar(props) {
           Categories
         </Typography>
 
-        {navItems2.map((item) => (
-          <ListItem key={item} disablePadding>
-            <ListItemButton sx={{ textAlign: "center" }}>
-              <Link to={`products/${item.path}`}>
+        {newLocal.map((item, i) => (
+          <Link key={i} to={`products/${item.path}`}>
+            <ListItem disablePadding>
+              <ListItemButton sx={{ textAlign: "start" }}>
                 <ListItemText primary={item.cat} />
-              </Link>
-            </ListItemButton>
-          </ListItem>
+              </ListItemButton>
+            </ListItem>
+          </Link>
         ))}
       </List>
     </Box>
@@ -109,13 +103,11 @@ function DrawerAppBar(props) {
       <AppBar component="nav">
         <Toolbar>
           <Typography
-            variant="h6"
+            variant="h5"
             component="div"
             sx={{ flexGrow: 1, display: { xs: "block", sm: "block" } }}
           >
-            <Link className="text-3xl " to="/">
-              LAMOSTORE
-            </Link>
+            <Link to="/">LAMOSTORE</Link>
           </Typography>
           <IconButton
             color="inherit"
@@ -128,16 +120,18 @@ function DrawerAppBar(props) {
           </IconButton>
 
           <Box sx={{ display: { xs: "none", sm: "none", md: "flex" } }}>
-            {navItems2.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
-                <Link to={`products/${item.path}`}>{item.cat}</Link>
-              </Button>
+            {newLocal.map((item, i) => (
+              <Link key={i} to={`products/${item.path}`}>
+                <Button sx={{ color: "#fff" }}>
+                  {item.cat}
+                </Button>
+              </Link>
             ))}
             <Divider orientation="vertical" variant="middle" flexItem />
-            {navItems.map((item) => (
-              <Button key={item} sx={{ color: "#fff" }}>
-                <Link to="/">{item}</Link>
-              </Button>
+            {navItems.map((item, i) => (
+              <Link key={i} to="/">
+                <Button sx={{ color: "#fff" }}>{item}</Button>
+              </Link>
             ))}
           </Box>
           <Divider orientation="vertical" variant="middle" flexItem />
@@ -189,7 +183,5 @@ function DrawerAppBar(props) {
     </Box>
   );
 }
-
-
 
 export default DrawerAppBar;
