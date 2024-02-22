@@ -80,8 +80,64 @@
   grid-area: item4;
 }
 
+.product-box::after{
+  content: "Show";
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  letter-spacing: 2px;
+  position: absolute;
+  bottom: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  height: 50px;
+  background: rgb(3, 69, 110);
+  transition: 0.4s;
+}
+.product-box:hover:after {
+    bottom: 0;
+}
 
-@media screen and (max-width: 850px) {
+.label {
+  width: 100%;
+  position: absolute;
+  background: cadetblue;
+  text-align: center;
+  color: white;
+  transform: rotate(-45deg) translate(-79px, -54px);
+  font-size: 15px;
+  box-shadow: inset 0 0 2px 0px black;
+}
+
+
+
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: flex;
+  justify-content: center;
+  align-items: self-start;
+}
+
+
+
+
+
+
+
+@media screen and (max-width: 550px) {
   .swiper-slide img {
       object-fit: cover;
   }
@@ -89,5 +145,26 @@
     width: 100%;
     top: 56px;
     height: calc(60vh - 66px)
+  }
+}
+
+@media screen and (min-width: 550px) {
+  .swiper-slide img {
+      object-fit: cover;
+  }
+  .swiper {
+    width: 100%;
+    top: 56px;
+    height: calc(85vh - 66px)
+  }
+}
+@media screen and (min-width: 900px) {
+  .swiper-slide img {
+      object-fit: initial;
+  }
+  .swiper {
+    width: 100%;
+    top: 64px;
+    height: calc(100vh - 66px)
   }
 }
