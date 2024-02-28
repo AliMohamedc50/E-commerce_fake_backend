@@ -4,12 +4,9 @@ import { Box, Rating, Stack, Typography } from '@mui/material';
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-
-
 const Card = ({item}) => {
     const upload_url = "http://localhost:1337"
     const value = 4.5;
-    // console.log(item.attributes);
 
   return (
     <Link to={`/product/${item.id}`}>
@@ -25,7 +22,7 @@ const Card = ({item}) => {
           overflow: "hidden",
         }}
       >
-        {item?.attributes?.isnew && <span sx className="label">New Season</span>}
+        {item?.attributes?.isnew && <span className="label">New Season</span>}
         <img
           style={{ width: "100%", height: "75%", objectFit: "cover" }}
           src={upload_url + item?.attributes?.img?.data?.attributes?.url}
