@@ -1,10 +1,10 @@
 /* eslint-disable no-unused-vars */
+import { Stack } from '@mui/material';
 import React from 'react'
 
 const Footer = () => {
   return (
-    <div className="footer mx-48 mt-24 mb-6 ">
-      <div className=" flex gap-12">
+    <Stack direction={{xs: "column", sm: "row"}} justifyContent="space-between" spacing={"50px"} sx={{padding: "10px"}} className="footer">
         <div className="item">
           <h1>categories</h1>
           <span>Women</span>
@@ -32,8 +32,7 @@ const Footer = () => {
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur temporibus quae, neque repellendus esse cupiditate placeat iure enim laboriosam ipsa adipisci, itaque nemo ipsum. Ex, magni cum? Sit, officia dignissimos?
           </span>
         </div>
-      </div>
-    </div>
+    </Stack>
   );
 }
 

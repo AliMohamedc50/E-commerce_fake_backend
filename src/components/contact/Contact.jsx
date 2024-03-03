@@ -4,30 +4,32 @@ import PinterestIcon from "@mui/icons-material/Pinterest";
 import GoogleIcon from "@mui/icons-material/Google";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import { Container } from '@mui/material';
+import { Box, Button, Container, TextField, Typography, useMediaQuery } from '@mui/material';
 import Stack from "@mui/material/Stack";
 
 const Contact = () => {
+  // const matches = useMediaQuery('(max-width:725px)');
   return (
-    <div className='contact bg-blue-600'>
+    <Box className='contact' sx={{background: "#1976d2"}}>
         <Container sx={{py: "7px"}}>
           
-          <Stack direction="row" justifyContent="center" spacing={12} alignItems="center">
+          <Stack direction={{xs : "column" , sm: "row" }} spacing={{xs : "15px"}} justifyContent="space-between"  alignItems="center">
 
-            <h3 className='text-white font-normal	'>BE IN TOUCH WITH US</h3>
-            <div>
-                <input type="text" placeholder='Enter your email' className='p-1 px-2 rounded-s-sm' />
-                <button className='bg-slate-800 text-white p-1 px-2 outline-none rounded-e-sm'>join us</button>
-                </div>
-                <div className="icons flex gap-1">
-                  <PinterestIcon className='text-white' />
-                  <GoogleIcon className='text-white' />
-                  <TwitterIcon className='text-white' />
-                  <InstagramIcon className='text-white' />
-                </div>
+            <Typography variant="h6" sx={{fontSize:{xs: "20px"}, color: "white", fontWeight: "400"}} color="initial"> BE IN TOUCH WITH US</Typography>
+            <Box sx={{display: "flex"}}>
+              {/* <input type="text" placeholder='Enter your email'  /> */}
+              <TextField sx={{bgcolor:"white", padding: "0px", width: {xs: "180px", md: "300px"}}} id="outlined-basic" variant="outlined" >Enter your email</TextField>
+              <Button variant="contained" color="success">join us</Button>
+            </Box>
+              <div className="icons flex gap-1">
+                <PinterestIcon color='white' />
+                <GoogleIcon color='white' />
+                <TwitterIcon color='white' />
+                <InstagramIcon color='white' />
+              </div>
           </Stack>
         </Container>
-    </div>
+    </Box>
   )
 }
 
