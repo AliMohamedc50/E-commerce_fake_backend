@@ -4,7 +4,7 @@ import React from 'react'
 
 const Footer = () => {
   return (
-    <Stack direction={{xs: "column", sm: "row"}} justifyContent="space-between" spacing={"50px"} sx={{padding: "10px"}} className="footer">
+    <Stack  direction={{xs: "column", sm: "row"}} justifyContent="space-between" spacing={"50px"} sx={{padding: "20px", bgcolor:"#cfd8dc"}} className="footer">
         <div className="item">
           <h1>categories</h1>
           <span>Women</span>

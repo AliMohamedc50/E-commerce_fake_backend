@@ -21,7 +21,7 @@
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
+  background: #fff; 
   display: flex;
   justify-content: center;
   align-items: center;
@@ -174,9 +174,9 @@
   }
 }
 @media screen and (min-width: 900px) {
-  /* .swiper-slide img {
-      object-fit: cover;
-  } */
+  .swiper-slide img {
+      object-fit: initial;
+  }
   .swiper {
     width: 100%;
     top: 64px;
