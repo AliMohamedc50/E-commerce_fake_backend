@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { useRef, useState } from 'react'
 import Typography from '@mui/material/Typography'
-import { Box, Button } from '@mui/material'
+import { Box, Button, Stack } from '@mui/material'
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import BalanceIcon from "@mui/icons-material/Balance";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -12,11 +12,11 @@ import {addToCart} from "../../Store/product/productSlice"
 import CustomizedSnackbars from '../../components/alert/Alert';
 
 const Product = () => {
-          const upload_url = "http://localhost:1337";
+  const upload_url = "http://localhost:1337";
 
-          const childRef = useRef(null);
+  const childRef = useRef(null);
 
-          const [alertText, setAlertText] = useState(null);
+  const [alertText, setAlertText] = useState(null);
 
   const id = useParams().id
   const { data, loading, errorr } = useFetch(`/products/${id}?populate=*`);
@@ -35,53 +35,76 @@ const handelShoppingCart  = () => {
                 quantity,
               })
               );
-              // handleClick();
     childRef.current.handleClick();
     setAlertText("You have added the product to the cart");
 }
 
 
   return (
-    <div className="product relative top-28 w-10/12 flex gap-10 flex-1 m-auto">
-      <div className="left flex flex-1 gap-4">
-        <div className="left  flex flex-col	gap-3 ">
+    <Stack
+      direction={{ xs: "column-reverse", sm: "column-reverse", md: "row" }}
+      sx={{ px: {xs: "30px"}, py:"80px", width: "83%", display: "flex", gap: "40px", m: "auto" }}
+      className="product"
+    >
+      <Box sx={{ display: "flex", flex: "1", gap: "16px" }} className="left">
+        <Stack direction="column" spacing={6} className="left">
           <img
             src={upload_url + data?.attributes?.img?.data?.attributes?.url}
-            className="w-32 cursor-pointer object-cover h-36"
+            style={{
+              Width: "128px",
+              cursor: "pointer",
+              objectFit: "cover",
+              height: "144px",
+            }}
             alt=""
             onClick={() => setSelectImg("img")}
           />
           <img
             src={upload_url + data?.attributes?.img2?.data?.attributes?.url}
-            className="w-32 cursor-pointer object-cover h-36"
+            style={{
+              Width: "128px",
+              cursor: "pointer",
+              objectFit: "cover",
+              height: "144px",
+            }}
             alt=""
             onClick={() => setSelectImg("img2")}
           />
-        </div>
+        </Stack>
         <Box
-          sx={{ height: "80vh", overflow: "hidden" }}
-          className="right w-full "
+          sx={{
+            height: "80vh",
+            width: { sm: "290px", md: "333px", lg: "444px" },
+            overflow: "hidden",
+          }}
+          className="right"
         >
           <img
-            className="w-full h-full object-cover"
+            style={{ width: "100%", height: "100%", objectFit: "cover" }}
             src={
               upload_url + data?.attributes?.[selectImg]?.data?.attributes?.url
             }
             alt=""
           />
         </Box>
-      </div>
-      <div className="right flex-1 ">
+      </Box>
+      <Box sx={{ flex: "1" }} className="right">
         <Typography className="title" variant="h3" color="initial">
           {data?.attributes?.title}
         </Typography>
-        <h3 className="text-blue-500 text-2xl my-5">
+
+        <Typography
+          variant="h3"
+          color="initial"
+          sx={{ color: "#2196f3", fontSize: "24px", marginY: "20px" }}
+        >
           {data?.attributes?.price}
-        </h3>
+        </Typography>
+
         <Typography className="title" variant="p" color="initial">
           {data?.attributes?.desc}
         </Typography>
-        <div className="flex mt-4 mb-8">
+        <Box sx={{ display: "flex", mt: "16px", mb: "32px" }}>
           <Button
             variant="contained"
             disabled={loading ? true : false}
@@ -89,7 +112,13 @@ const handelShoppingCart  = () => {
           >
             -
           </Button>
-          <p className="py-2 px-5 bg-slate-200">{quantity}</p>
+          <Typography
+            variant="p"
+            color="initial"
+            sx={{ bgcolor: "#cfd8dc", paddingX: "20px", paddingY: "8px" }}
+          >
+            {quantity}
+          </Typography>
           <Button
             disabled={loading ? true : false}
             variant="contained"
@@ -97,7 +126,7 @@ const handelShoppingCart  = () => {
           >
             +
           </Button>
-        </div>
+        </Box>
         <Button
           sx={{ width: 220 }}
           onClick={() => handelShoppingCart()}
@@ -108,20 +137,7 @@ const handelShoppingCart  = () => {
           ADD TO CART
         </Button>
         <CustomizedSnackbars ref={childRef} alertText={alertText} />
-
-        {/* alert for add product in cart */}
-        {/* <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
-          <Alert
-            onClose={handleClose}
-            severity="success"
-            variant="filled"
-            sx={{ width: "100%" }}
-          >
-            This is a success Alert inside a Snackbar!
-          </Alert>
-        </Snackbar> */}
-
-        <div className="my-3 flex gap-3">
+        <Box sx={{ my: "12px", display: "flex", gap: "12px" }}>
           <Button
             sx={{ width: 200 }}
             variant="outlined"
@@ -135,14 +151,10 @@ const handelShoppingCart  = () => {
             startIcon={<BalanceIcon />}
           >
             ADD TO COMPARE
-            {/* {open && console.log(<testcall />)} */}
-            {/* {open && <Testcall />} */}
-            {/* {open && "grdrgdrrrrrrrrrrrrrrrgg"} */}
-            {/* <testcall /> */}
           </Button>
-        </div>
-      </div>
-    </div>
+        </Box>
+      </Box>
+    </Stack>
   );
 }
 

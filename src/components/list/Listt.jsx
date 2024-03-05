@@ -1,6 +1,7 @@
 import React from 'react'
 import Card from '../card/Card';
 import useFetch from '../../hooks/useFetch';
+import { Stack } from '@mui/material';
 
 const Listt = ({subCats, sort, maxprice, catId}) => {
 
@@ -12,11 +13,11 @@ const Listt = ({subCats, sort, maxprice, catId}) => {
 
 
   return (
-    <div className='flex flex-wrap justify-between gap-3'>
+    <Stack direction="row" flexWrap="wrap" justifyContent="space-between" >
       {data.map((item) => (
         <Card item={item} key={item.id} />
       ))}
-    </div>
+    </Stack>
   );
 }
 

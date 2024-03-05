@@ -10,9 +10,7 @@
   font-weight: 500;
 }
 
-.swiper,
-.products,
-.product {
+.swiper {
   top: 64px;
   width: 100%;
   height: calc(100vh - 66px);

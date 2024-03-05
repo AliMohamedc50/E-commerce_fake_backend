@@ -33,13 +33,13 @@ const Products = () => {
         : selectedSubCategory.filter((item) => item !== value ))
   };
 
-  console.log([...selectedSubCategory]);
+  // console.log([...selectedSubCategory]);
 
   return (
-    <Box sx={{ position: "relative" }} className="products flex ">
-      <div className="left mt-5 mx-14  sticky h-full top-6 ">
+    <Box sx={{ position: "relative", display:"flex", marginY: "35px", top: "30px", pb: "50px" }} className="products">
+      <Box sx={{mt: "20px", mx: "56px", top: "24px"}} className="left">
         <div>
-          <Typography variant="h5" color="initial">
+          <Typography sx={{fontWeight: "400"}} variant="h5" color="initial">
             Product Categories
           </Typography>
           {
@@ -98,24 +98,25 @@ const Products = () => {
             </RadioGroup>
           </FormControl>
         </div>
-      </div>
-      <div className="right ms-8 mt-5  w-9/12 overflow-hidden">
-        <div className="top h-96">
+      </Box>
+      <Box sx={{marginLeft: "32px", mt: "20px", width: "75%"}} className="right">
+        <Box sx={{height: "360px"}} className="top">
           <img
-            className="h-full w-full object-cover"
+            style={{width: "100%", height: "100%", objectFit: "cover"}}
             src="https://images.pexels.com/photos/3875430/pexels-photo-3875430.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             alt=""
           />
-        </div>
-        <div className="bottom mt-7">
+        </Box>
+        <Box sx={{mt: "28px"}}  className="bottom mt-7">
           <Listt
             subCats={selectedSubCategory}
             sort={sort}
             maxprice={maxprice}
             catId={catId}
           />
-        </div>
-      </div>
+        
+        </Box>
+      </Box>
     </Box>
   );
 }
