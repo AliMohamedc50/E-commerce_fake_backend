@@ -58,7 +58,6 @@ const Categories = () => {
                 </Link>
                 <img
                 style={{objectFit: "cover"}}
-                  classNameName="img"
                   src="https://images.pexels.com/photos/19421136/pexels-photo-19421136/free-photo-of-young-woman-sitting-in-the-driveway-leaning-against-a-car.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
                   alt=""
                 />
@@ -82,7 +81,6 @@ const Categories = () => {
                   </Button>
                 </Link>
                 <img
-                  classNameName=""
                   src="https://images.pexels.com/photos/1126993/pexels-photo-1126993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                   alt=""
                 />

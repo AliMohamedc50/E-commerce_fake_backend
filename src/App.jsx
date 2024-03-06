@@ -9,11 +9,12 @@ import React from 'react'
 import Footer from "./components/footer/Footer";
 import "./App.css"
 import DrawerAppBar from "./components/navbar/Navbar";
+import SearchAppBar from "./components/navbar2/NaveBar2";
 function Layout() {
   return (
     <div>
       <DrawerAppBar />
-      {/* <Navbar /> */}
+      <SearchAppBar />
       <Outlet />
       <Footer />
     </div>

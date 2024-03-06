@@ -1,15 +1,10 @@
 /* eslint-disable no-unused-vars */
-import React, { useState } from "react";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import SearchIcon from "@mui/icons-material/Search";
+import React from "react";
+
 import { Link } from "react-router-dom";
 import { styled } from "@mui/material/styles";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Cart from "../cart/Cart";
 import CssBaseline from "@mui/material/CssBaseline";
 import MenuIcon from "@mui/icons-material/Menu";
-import { useSelector } from "react-redux";
 import {
   IconButton,
   Box,
@@ -46,7 +41,6 @@ const newLocal = [
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
-  const { products } = useSelector((state) => state.cartSlice);
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -96,7 +90,6 @@ function DrawerAppBar(props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
-  const [open, setOpen] = useState(false);
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -122,9 +115,7 @@ function DrawerAppBar(props) {
           <Box sx={{ display: { xs: "none", sm: "none", md: "flex" } }}>
             {newLocal.map((item, i) => (
               <Link key={i} to={`products/${item.path}`}>
-                <Button sx={{ color: "#fff" }}>
-                  {item.cat}
-                </Button>
+                <Button sx={{ color: "#fff" }}>{item.cat}</Button>
               </Link>
             ))}
             <Divider orientation="vertical" variant="middle" flexItem />
@@ -134,30 +125,6 @@ function DrawerAppBar(props) {
               </Link>
             ))}
           </Box>
-          <Divider orientation="vertical" variant="middle" flexItem />
-
-          <div className="iocns">
-            <IconButton color="inherit">
-              <SearchIcon />
-            </IconButton>
-            <IconButton color="inherit">
-              <PersonOutlineOutlinedIcon />
-            </IconButton>
-            <IconButton color="inherit">
-              <FavoriteBorderOutlinedIcon />
-            </IconButton>
-            <IconButton
-              color="inherit"
-              aria-label="cart"
-              onClick={() => setOpen(!open)}
-            >
-              <StyledBadge badgeContent={products?.length} color="warning">
-                <ShoppingCartIcon />
-              </StyledBadge>
-            </IconButton>
-          </div>
-
-          {open && <Cart />}
         </Toolbar>
       </AppBar>
       <nav>
@@ -167,7 +134,7 @@ function DrawerAppBar(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, // Better open performance on mobile.
+            keepMounted: true, 
           }}
           sx={{
             display: { xs: "block", sm: "block" },
@@ -180,6 +147,7 @@ function DrawerAppBar(props) {
           {drawer}
         </Drawer>
       </nav>
+      
     </Box>
   );
 }

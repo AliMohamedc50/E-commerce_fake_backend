@@ -11,9 +11,8 @@
 }
 
 .swiper {
-  top: 64px;
   width: 100%;
-  height: calc(100vh - 66px);
+  height: calc(100vh - 65px);
 }
 
 .swiper-slide {
@@ -152,7 +151,6 @@
   }
   .swiper {
     width: 100%;
-    top: 56px;
     height: calc(60vh - 66px)
   }
   .label { 
@@ -167,7 +165,6 @@
   }
   .swiper {
     width: 100%;
-    top: 56px;
     height: calc(85vh - 66px)
   }
 }
@@ -177,7 +174,6 @@
   }
   .swiper {
     width: 100%;
-    top: 64px;
     height: calc(100vh - 66px)
   }
 }

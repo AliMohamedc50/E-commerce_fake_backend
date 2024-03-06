@@ -16,7 +16,7 @@ const CustomizedSnackbars = forwardRef((props, ref) => {
 
     setOpen(false);
 };
-console.log(props);
+
 return (
     <div>
     <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>

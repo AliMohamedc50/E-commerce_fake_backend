@@ -42,11 +42,12 @@ const handelShoppingCart  = () => {
 
   return (
     <Stack
-      direction={{ xs: "column-reverse", sm: "column-reverse", md: "row" }}
-      sx={{ px: {xs: "30px"}, py:"80px", width: "83%", display: "flex", gap: "40px", m: "auto" }}
+      direction={{ xs: "column-reverse", sm: "row", md: "row" }}
+      alignItems="center"
+      sx={{ px: {xs: "30px", sm: "10px",md :" 80px"}, py:"80px", width: "100%%", display: "flex", gap: {xs: "10px", md: "40px"}, m: "auto" }}
       className="product"
     >
-      <Box sx={{ display: "flex", flex: "1", gap: "16px" }} className="left">
+      <Box sx={{ display: "flex", width: {xs :"310px"}, flex: "1", gap: "16px" }} className="left">
         <Stack direction="column" spacing={6} className="left">
           <img
             src={upload_url + data?.attributes?.img?.data?.attributes?.url}
@@ -88,7 +89,7 @@ const handelShoppingCart  = () => {
           />
         </Box>
       </Box>
-      <Box sx={{ flex: "1" }} className="right">
+      <Box sx={{ flex: "1", width: {xs :"320px"}, p: {xs : "0 20px"} }} className="right">
         <Typography className="title" variant="h3" color="initial">
           {data?.attributes?.title}
         </Typography>
