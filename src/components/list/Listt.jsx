@@ -13,7 +13,7 @@ const Listt = ({subCats, sort, maxprice, catId}) => {
 
 
   return (
-    <Stack direction="row" flexWrap="wrap" justifyContent="space-between" >
+    <Stack direction="row" flexWrap="wrap" justifyContent="center" gap={6} >
       {data.map((item) => (
         <Card item={item} key={item.id} />
       ))}
