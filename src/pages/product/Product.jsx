@@ -44,7 +44,7 @@ const handelShoppingCart  = () => {
     <Stack
       direction={{ xs: "column-reverse", sm: "row", md: "row" }}
       alignItems="center"
-      sx={{ px: {xs: "30px", sm: "10px",md :" 80px"}, py:"80px", width: "100%%", display: "flex", gap: {xs: "10px", md: "40px"}, m: "auto" }}
+      sx={{ px: {xs: "30px", sm: "10px",md :" 80px"}, py:"40px", width: "100%%", display: "flex", gap: {xs: "10px", md: "40px"}, m: "auto" }}
       className="product"
     >
       <Box sx={{ display: "flex", width: {xs :"310px"}, flex: "1", gap: "16px" }} className="left">

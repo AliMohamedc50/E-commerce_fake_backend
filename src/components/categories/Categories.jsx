@@ -18,7 +18,7 @@ const Categories = () => {
 
   return (
     <Box
-      sx={{ height: "500px", position: "relative", overflow: "hidden" }}
+      sx={{ height: "700px", position: "relative", overflow: "hidden" }}
       className="categories"
     >
       <Stack
