@@ -1,6 +1,6 @@
 import React  from 'react'
 import ItemCart from './ItemCart'
-import { Button, Divider } from '@mui/material';
+import { Box, Button, Divider, Stack, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { resetCart } from "../../Store/product/productSlice";
 
@@ -17,18 +17,37 @@ const Cart = () => {
     return total;
   };
   return (
-    <div className="w-96 absolute top-full right-0 bg-gray-300 p-2 z-40  ">
-      <h4 className="py-5 font-semibold text-xl text-slate-500">
+    <Box
+      sx={{
+        width: "384px",
+        position: "absolute",
+        top: "100%",
+        right: "0",
+        p: "8px",
+        zIndex: "40",
+        bgcolor: "#b5cad6",
+      }}
+    >
+      <Typography
+        variant="h4"
+        color="initial"
+        sx={{
+          py: "10px",
+          fontWeight: "600",
+          fontSize: "20px",
+          color: "#004f9578",
+        }}
+      >
         Products in your cart
-      </h4>
+      </Typography>
       {products?.map((item) => (
         <ItemCart item={item} key={item.id} />
       ))}
       <Divider orientation="horizontal" variant="fullWidth" />
-      <div className="flex justify-between items-center my-2">
-        <p className="font-semibold text-xl">SUBTOTAL</p>
-        <p className="font-semibold text-lg">{totalPrice().toFixed(2)}</p>
-      </div>
+      <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{my:"8px"}}>
+        <Typography variant="body1" color="initial" sx={{fontWeight:"600", fontSize:"20px"}}>SUBTOTAL</Typography>
+        <Typography variant="body1" color="initial" sx={{fontWeight:"600", fontSize:"18px"}}>{totalPrice().toFixed(2)}</Typography>
+      </Stack>
 
       <Button color="primary" variant="contained">
         PRODUCT IN CHEKOUT
@@ -36,14 +55,14 @@ const Cart = () => {
       <Button
         sx={{ display: "block", my: "8px" }}
         variant="text"
-        color='error'
+        color="error"
         // disabled={products.length >= 1 ? false : true }
-        disabled={Boolean(!products.length)  }
+        disabled={Boolean(!products.length)}
         onClick={() => dispatch(resetCart())}
       >
         clear cart
       </Button>
-    </div>
+    </Box>
   );
 }
 

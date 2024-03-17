@@ -39,7 +39,7 @@ const Categories = () => {
           <SwiperSlide style={{ height: "90%" }}>
             <Box sx={{ flex: 1, height: "100%" }} className="container-left">
               <Box
-                className="item1 bg-neutral-950"
+                className="item1"
                 sx={{ overflow: "hidden", position: "relative" }}
               >
                 <Link to={`/products/9`}>
@@ -86,7 +86,7 @@ const Categories = () => {
                 />
               </Box>
               <Box
-                className="y bg-yellow-700"
+                className="y"
                 sx={{ overflow: "hidden", position: "relative" }}
               >
                 <Link to={`/products/7`}>
@@ -104,7 +104,6 @@ const Categories = () => {
                   </Button>
                 </Link>
                 <img
-                  className=" "
                   src="https://images.pexels.com/photos/2779316/pexels-photo-2779316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
                   alt=""
                 />
@@ -114,7 +113,7 @@ const Categories = () => {
           <SwiperSlide style={{ height: "90%" }}>
             <Box sx={{ flex: 1, height: "100%" }} className="container-right">
               <Box
-                className="item3 bg-cyan-600 "
+                className="item3"
                 sx={{ overflow: "hidden", position: "relative" }}
               >
                 <Link to={`/products/2`}>
@@ -137,7 +136,7 @@ const Categories = () => {
                 />
               </Box>
               <Box
-                className="item4 bg-sky-200 "
+                className="item4"
                 sx={{ overflow: "hidden", position: "relative" }}
               >
                 <Link to={`/products/8`}>
@@ -160,7 +159,7 @@ const Categories = () => {
                 />
               </Box>
               <Box
-                className="x bg-neutral-500 "
+                className="x"
                 sx={{ overflow: "hidden", position: "relative" }}
               >
                 <Link to={`/products/5`}>
@@ -191,8 +190,3 @@ const Categories = () => {
 };
 
 export default Categories;
-
-
-//  src ="https://images.pexels.com/photos/2779316/pexels-photo-2779316.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
-//  src ="https://images.pexels.com/photos/1126993/pexels-photo-1126993.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1";
-//  src ="https://images.pexels.com/photos/19421136/pexels-photo-19421136/free-photo-of-young-woman-sitting-in-the-driveway-leaning-against-a-car.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load";

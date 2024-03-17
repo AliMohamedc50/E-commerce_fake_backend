@@ -21,12 +21,12 @@ const Contact = () => {
               <TextField sx={{bgcolor:"white", padding: "0px", width: {xs: "180px", md: "300px"}}} id="outlined-basic" variant="outlined" >Enter your email</TextField>
               <Button variant="contained" color="success">join us</Button>
             </Box>
-              <div className="icons flex gap-1">
+              <Stack direction="row" gap="4px" >
                 <PinterestIcon color='white' />
                 <GoogleIcon color='white' />
                 <TwitterIcon color='white' />
                 <InstagramIcon color='white' />
-              </div>
+              </Stack>
           </Stack>
         </Container>
     </Box>
