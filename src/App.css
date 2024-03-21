@@ -1,3 +1,32 @@
+  .login-container {
+    max-width: 300px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  .login-container input[type="text"],
+  .login-container input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  .login-container button {
+    width: 100%;
+    padding: 10px;
+    background-color: #4c9baf;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: 0.2s;
+  }
+  .login-container button:hover {
+    background-color: #1c5c6c;
+  }
+
 .footer .item {
   display: flex;
   flex-direction: column;

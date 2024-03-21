@@ -13,6 +13,7 @@ import { useState } from "react";
 import { useSelector } from "react-redux";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Cart from "../cart/Cart";
+import { Link } from "react-router-dom";
 
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
@@ -72,9 +73,22 @@ export default function SearchAppBar() {
 
   return (
     <Box sx={{ flexGrow: 1, mt: "56px" }}>
-      <AppBar position="static" sx={{ bgcolor: "#455a64",py: {xs: "15px", sm:"0"}, pt:{sm:"5px"} }}>
-
-        <Toolbar sx={{display:"flex", justifyContent:"space-between", gap: "25px", flexDirection: {xs: "column", sm:"row"}}}>
+      <AppBar
+        position="static"
+        sx={{
+          bgcolor: "#455a64",
+          py: { xs: "15px", sm: "0" },
+          pt: { sm: "5px" },
+        }}
+      >
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            gap: "25px",
+            flexDirection: { xs: "column", sm: "row" },
+          }}
+        >
           <Search>
             <SearchIconWrapper>
               <SearchIcon />
@@ -82,13 +96,19 @@ export default function SearchAppBar() {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ "aria-label": "search" }}
-              />
-          </Search >
+            />
+          </Search>
 
-          <Stack direction="row" justifyContent="space-between" sx={{width: {xs:"100%", sm: "auto"}}}>
-            <IconButton color="inherit">
-              <PersonOutlineOutlinedIcon />
-            </IconButton>
+          <Stack
+            direction="row"
+            justifyContent="space-between"
+            sx={{ width: { xs: "100%", sm: "auto" } }}
+          >
+            <Link to="login">
+              <IconButton color="inherit">
+                <PersonOutlineOutlinedIcon />
+              </IconButton>
+            </Link>
             <IconButton color="inherit">
               <FavoriteBorderOutlinedIcon />
             </IconButton>
@@ -102,7 +122,7 @@ export default function SearchAppBar() {
               </StyledBadge>
             </IconButton>
 
-          {open && <Cart />}
+            {open && <Cart />}
           </Stack>
         </Toolbar>
       </AppBar>

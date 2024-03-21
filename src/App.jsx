@@ -10,6 +10,7 @@ import Footer from "./components/footer/Footer";
 import "./App.css"
 import DrawerAppBar from "./components/navbar/Navbar";
 import SearchAppBar from "./components/navbar2/NaveBar2";
+import Login from "./pages/login/Login";
 function Layout() {
   return (
     <div>
@@ -39,7 +40,11 @@ const router = createBrowserRouter([
         element: <Product />,
       },
     ],
-  }
+  },
+  {
+    path: "login",
+    element: <Login />,
+  },
 ]);
 
 
