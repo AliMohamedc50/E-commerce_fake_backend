@@ -4,6 +4,7 @@ import { forwardRef, useImperativeHandle, useState } from "react";
 
 const CustomizedSnackbars = forwardRef((props, ref) => {
     const [open, setOpen] = useState(false);
+
     useImperativeHandle(ref, () => ({
         handleClick() {
             setOpen(true);
@@ -18,19 +19,23 @@ const CustomizedSnackbars = forwardRef((props, ref) => {
 };
 
 return (
-    <div>
-    <Snackbar open={open} autoHideDuration={2000} onClose={handleClose}>
-        <Alert
+  <div>
+    <Snackbar open={open} autoHideDuration={3000} onClose={handleClose}>
+      <Alert
         onClose={handleClose}
-        severity="success"
+        severity={props.severity}
         variant="filled"
         sx={{ width: "100%" }}
-        >
-            {props.alertText}
-        </Alert>
+      >
+        {props.alertText}
+      </Alert>
     </Snackbar>
-    </div>
+  </div>
 );
 });
+
+CustomizedSnackbars.defaultProps = {
+  severity: "success",
+};
 
 export default CustomizedSnackbars;
