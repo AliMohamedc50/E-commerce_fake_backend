@@ -1,10 +1,10 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-// import { Navigate } from "react-router-dom";
 
 export const loginUser = createAsyncThunk(
   "user/loginUser",
-  async (userCredential) => {
+  async (userCredential, thunkAPI) => {
+    const { rejectWithValue } = thunkAPI;
     try {
       const response = await axios.post(
         "http://localhost:1337/api/auth/local",
@@ -12,11 +12,12 @@ export const loginUser = createAsyncThunk(
       );
       return response.data.user;
     } catch (error) {
-      console.log("An error occurred:", error.response);
-      throw error.response;
+      const { status = null, data = null } = error.response;
+      return rejectWithValue({ status, message: data.error.message });
     }
   }
 );
+
 const userSlice = createSlice({
     name:"user",
     initialState:{
@@ -28,13 +29,19 @@ const userSlice = createSlice({
       bulder
         .addCase(loginUser.pending, (state) => {
           state.loading = true;
+          state.error = null;
         })
         .addCase(loginUser.fulfilled, (state, action) => {
-          state.user = action.payload
+          state.user = action.payload;
           console.log(state.user);
-        }).addCase(loginUser.rejected, (state, action) => {
-          console.log(action.payload)
+          state.loading = false;
+          state.error = null;
         })
+        .addCase(loginUser.rejected, (state, action) => {
+          // console.log(action.payload);
+          state.error = action.payload
+          state.loading = false;
+        });
     }
 })
 
