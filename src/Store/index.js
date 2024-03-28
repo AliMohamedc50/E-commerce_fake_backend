@@ -36,3 +36,7 @@ export const store = configureStore({
 });
 
 export let persistor = persistStore(store);
+
+window.addEventListener("beforeunload", () => {
+  persistor.purge(); 
+});

@@ -8,7 +8,7 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 const Login = () => {
   const navigate = useNavigate();
-  const { loading, user, error, errorData } = useSelector(
+  const { loading, error } = useSelector(
     (state) => state.userSlice
   );
 
@@ -32,8 +32,6 @@ const Login = () => {
       // console.log("Error:", error.message);
     });
   };
-
-  // console.log(error && error);
   return (
     <Box
       className="login-container"
@@ -76,6 +74,7 @@ const Login = () => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
         />
+
         <button type="submit">
           {loading ? <CircularProgress color="inherit" /> : "Log In"}
         </button>
@@ -84,6 +83,7 @@ const Login = () => {
             {error.message}
           </Alert>
         ) : null}
+
       </form>
       <Typography
         variant="body1"

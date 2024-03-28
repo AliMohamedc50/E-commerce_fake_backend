@@ -12,6 +12,7 @@ import DrawerAppBar from "./components/navbar/Navbar";
 import SearchAppBar from "./components/navbar2/NaveBar2";
 import Login from "./pages/login/Login";
 import Regestration from "./pages/registration/Regestration";
+import Profile from "./pages/profile/Profile";
 
 function Layout() {
   return (
@@ -50,6 +51,10 @@ const router = createBrowserRouter([
   {
     path: "regestration",
     element: <Regestration />,
+  },
+  {
+    path: "profile",
+    element: <Profile />,
   },
 ]);
 

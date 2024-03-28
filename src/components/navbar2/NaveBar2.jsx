@@ -16,6 +16,11 @@ import Cart from "../cart/Cart";
 import { Link } from "react-router-dom";
 
 
+import { deepPurple } from "@mui/material/colors";
+import Avatar from "@mui/material/Avatar";
+
+import Tooltip from "@mui/material/Tooltip";
+
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
     right: 0,
@@ -24,7 +29,6 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
     padding: "0 4px",
   },
 }));
-
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -68,9 +72,10 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
-    const [open, setOpen] = useState(false);
-    const { products } = useSelector((state) => state.cartSlice);
-
+  const [open, setOpen] = useState(false);
+  const { products } = useSelector((state) => state.cartSlice);
+  const { loading, user, error } = useSelector((state) => state.userSlice);
+  // console.log(user.id);
   return (
     <Box sx={{ flexGrow: 1, mt: "56px" }}>
       <AppBar
@@ -104,11 +109,25 @@ export default function SearchAppBar() {
             justifyContent="space-between"
             sx={{ width: { xs: "100%", sm: "auto" } }}
           >
-            <Link to="login">
-              <IconButton color="inherit">
-                <PersonOutlineOutlinedIcon />
-              </IconButton>
-            </Link>
+
+            {user ? (
+              <Link to="profile">
+                <Tooltip title="Profile" placement="bottom-start">
+                  <Avatar sx={{ bgcolor: deepPurple[500] }}>
+                    {user.username[0].toUpperCase()}
+                  </Avatar>
+                </Tooltip>
+              </Link>
+            ) : (
+              <Link to="login">
+                <Tooltip title="Profile" placement="bottom-start">
+                  <IconButton color="inherit">
+                    <PersonOutlineOutlinedIcon />
+                  </IconButton>
+                </Tooltip>
+              </Link>
+            )}
+
             <IconButton color="inherit">
               <FavoriteBorderOutlinedIcon />
             </IconButton>
