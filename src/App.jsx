@@ -12,7 +12,7 @@ import DrawerAppBar from "./components/navbar/Navbar";
 import SearchAppBar from "./components/navbar2/NaveBar2";
 import Login from "./pages/login/Login";
 import Regestration from "./pages/registration/Regestration";
-import Profile from "./pages/profile/Profile";
+import UserProfile from "./pages/userProfile/UserProfile";
 
 function Layout() {
   return (
@@ -54,7 +54,7 @@ const router = createBrowserRouter([
   },
   {
     path: "profile",
-    element: <Profile />,
+    element: <UserProfile />,
   },
 ]);
 

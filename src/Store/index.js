@@ -12,7 +12,7 @@ import {
 import storage from "redux-persist/lib/storage";
 import  cartSlice  from "./product/productSlice";
 import userSlice from "./user/userSlice";
-
+import searchProduct from "./searchProduct/searchProduct";
 
 
 const persistConfig = {
@@ -26,7 +26,7 @@ const rootReducer = combineReducers({ cartSlice, userSlice });
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 export const store = configureStore({
-  reducer: persistedReducer,
+  reducer: { persistedReducer, searchProduct },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware({
       serializableCheck: {
