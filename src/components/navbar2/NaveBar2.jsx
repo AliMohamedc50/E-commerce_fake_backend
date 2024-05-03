@@ -1,24 +1,20 @@
 import * as React from "react";
+import { useEffect } from "react";
 import { styled } from "@mui/material/styles";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
+
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import { Badge, Stack } from "@mui/material";
+import { Badge, CircularProgress, Stack, Tooltip, Avatar, Toolbar, IconButton, Box, AppBar,Alert} from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import Cart from "../cart/Cart";
 import { Link } from "react-router-dom";
-
 import { deepPurple } from "@mui/material/colors";
-import Avatar from "@mui/material/Avatar";
 
-import Tooltip from "@mui/material/Tooltip";
 import { searchProduct } from "../../Store/searchProduct/searchProduct";
+import Cart from "../cart/Cart";
+import SearchProductCom from "./SearchProductCom";
 
 const StyledBadge = styled(Badge)(({ theme }) => ({
   "& .MuiBadge-badge": {
@@ -30,19 +26,63 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 }));
 
 export default function SearchAppBar() {
-  const dispatch = useDispatch();
-  const [open, setOpen] = useState(false);
-  const { products } = useSelector((state) => state.persistedReducer.cartSlice);
-  const { user } = useSelector((state) => state.persistedReducer.userSlice);
-
-  const { productSearch } = useSelector(
+  const { loading, productSearch, error } = useSelector(
     (state) => state.searchProduct
   );
 
-  console.log(productSearch && productSearch)
+  const dispatch = useDispatch();
+
+  const [open, setOpen] = useState(false);
+
+  const { products } = useSelector((state) => state.persistedReducer.cartSlice);
+  const { user } = useSelector((state) => state.persistedReducer.userSlice);
+
+  const [inputSearchPro, setInputSearchPro] = useState(null);
+
 
   const handelSearchPro = (e) => {
-    dispatch(searchProduct(e.target.value));
+    setInputSearchPro(e.target.value);
+    if (e.target.value === "") {
+      setInputSearchPro(null);
+    }
+  };
+
+  useEffect(() => {
+    if (inputSearchPro !== null) {
+      dispatch(searchProduct(inputSearchPro));
+    }
+  }, [inputSearchPro, dispatch]);
+
+  //? Use the setTimeout the user can choose the product before removing the product list 
+  const handleInputBlur = () => {
+    setTimeout(() => {
+      setInputSearchPro(null);
+    }, 200);
+  };
+
+
+  const HandleSearchProductList = () => {
+    if (inputSearchPro !== null) {
+      if (loading) {
+        return <CircularProgress sx={{ m: "10px" }} />;
+      } else if (error) {
+        return (
+          <Alert sx={{ my: "10px" }} severity="error">
+            Make sure you are connected to the Internet
+          </Alert>
+        );
+      } else if (productSearch.length) {
+        return <SearchProductCom productSearch={productSearch} />;
+      } else if (!productSearch.length) {
+        return (
+          <Alert sx={{ my: "10px" }} severity="warning">
+            can't find products
+          </Alert>
+        );
+      }
+    } else {
+      return null;
+    }
   };
 
   return (
@@ -66,7 +106,7 @@ export default function SearchAppBar() {
           <Box
             className="search"
             sx={{
-              position:"relative",
+              position: "relative",
               width: { xs: "100%", sm: "300px" },
               display: "flex",
               alignItems: "center",
@@ -74,17 +114,24 @@ export default function SearchAppBar() {
           >
             <SearchIcon />
             <input
+              onBlur={handleInputBlur}
               type="search"
-              // value={searchPro}
               onChange={(e) => handelSearchPro(e)}
-              name=""
-              id=""
             />
-          <Box
-            sx={{ position: "absolute", width: { xs: "100%", sm: "300px" }, top:"100%",left:"0", bgcolor:"blue" }}
-          >
-            
-          </Box>
+            <Box
+              sx={{
+                position: "absolute",
+                zIndex: "2000",
+                width: { xs: "100%", sm: "300px" },
+                top: "100%",
+                left: "0",
+                bgcolor: "#e4e4e4",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <HandleSearchProductList />
+            </Box>
           </Box>
 
           <Stack
@@ -130,3 +177,29 @@ export default function SearchAppBar() {
     </Box>
   );
 }
+
+
+
+  // console.log(searchref.current);
+  
+//   const handleInputFocus = () => {
+//     setBlurSearchInput(true);
+//     // console.log(true);
+//   };
+
+ // const handleFocus = () => {
+  //   // console.log(searchref.current === document.activeElement);
+  //   if (searchref.current === document.activeElement) {
+
+  //     setBlurSearchInput(true)
+  //   }
+
+  //   // console.log(document.activeElement);
+  // };
+
+  // const handleBlur = () => {
+  //   // console.log(searchref.current === document.activeElement);
+  //       if (searchref.current !== document.activeElement) {
+  //         setBlurSearchInput(false);
+  //       }
+  // };

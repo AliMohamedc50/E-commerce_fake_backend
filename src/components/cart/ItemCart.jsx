@@ -1,7 +1,7 @@
 import React from 'react'
 import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { Box, Divider, Stack, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { useDispatch } from 'react-redux';
 import { removeItem } from "../../Store/product/productSlice";
 
@@ -64,7 +64,6 @@ const ItemCart = ({ item }) => {
       >
         <DeleteIcon />
       </IconButton>
-      <Divider orientation="horizontal" variant="fullWidth" />
     </Stack>
   );
 };

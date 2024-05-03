@@ -1,9 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import axios from "axios";
-// import axios from "axios";
-// import useFetch from "../../hooks/useFetch";
-
-
 
 export const searchProduct = createAsyncThunk(
   "searchProductSlice/searchProduct",
@@ -25,11 +21,10 @@ export const searchProduct = createAsyncThunk(
         }
       );
 
-      const data = response.data;
-      console.log(data);
+      const data = response.data.data;
       return data;
     } catch (error) {
-      return rejectWithValue(error.message);
+      return rejectWithValue(error.response.status);
     }
   }
 );
@@ -51,7 +46,6 @@ const searchProductSlice = createSlice({
       })
       .addCase(searchProduct.fulfilled, (state, action) => {
         state.productSearch = action.payload;
-        // console.log(action.payload);
         state.loading = false;
         state.error = null;
       })

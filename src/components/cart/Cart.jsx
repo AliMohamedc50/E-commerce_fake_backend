@@ -6,7 +6,7 @@ import { resetCart } from "../../Store/product/productSlice";
 
 const Cart = () => {
    
-  const { products } = useSelector((state) => state.cartSlice);
+  const { products } = useSelector((state) => state.persistedReducer.cartSlice);
     const dispatch = useDispatch();
 
   const totalPrice = () => {
@@ -41,12 +41,32 @@ const Cart = () => {
         Products in your cart
       </Typography>
       {products?.map((item) => (
-        <ItemCart item={item} key={item.id} />
+        <>
+          <ItemCart item={item} key={item.id} />
+         
+        </>
       ))}
       <Divider orientation="horizontal" variant="fullWidth" />
-      <Stack direction="row" justifyContent="space-between" alignItems="center" sx={{my:"8px"}}>
-        <Typography variant="body1" color="initial" sx={{fontWeight:"600", fontSize:"20px"}}>SUBTOTAL</Typography>
-        <Typography variant="body1" color="initial" sx={{fontWeight:"600", fontSize:"18px"}}>{totalPrice().toFixed(2)}</Typography>
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        alignItems="center"
+        sx={{ my: "8px" }}
+      >
+        <Typography
+          variant="body1"
+          color="initial"
+          sx={{ fontWeight: "600", fontSize: "20px" }}
+        >
+          SUBTOTAL
+        </Typography>
+        <Typography
+          variant="body1"
+          color="initial"
+          sx={{ fontWeight: "600", fontSize: "18px" }}
+        >
+          {totalPrice().toFixed(2)}
+        </Typography>
       </Stack>
 
       <Button color="primary" variant="contained">
