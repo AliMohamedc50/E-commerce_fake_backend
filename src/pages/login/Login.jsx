@@ -8,8 +8,9 @@ import CircularProgress from "@mui/material/CircularProgress";
 import Alert from "@mui/material/Alert";
 const Login = () => {
   const navigate = useNavigate();
+  
   const { loading, error } = useSelector(
-    (state) => state.userSlice
+    (state) => state.persistedReducer.userSlice
   );
 
   const [email, setEmail] = useState("");
@@ -29,7 +30,7 @@ const Login = () => {
       }
     })
     .catch((error) => {
-      // console.log("Error:", error.message);
+      console.log("Error:", error.message);
     });
   };
   return (

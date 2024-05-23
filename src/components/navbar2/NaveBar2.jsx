@@ -5,7 +5,18 @@ import { styled } from "@mui/material/styles";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import SearchIcon from "@mui/icons-material/Search";
-import { Badge, CircularProgress, Stack, Tooltip, Avatar, Toolbar, IconButton, Box, AppBar,Alert} from "@mui/material";
+import {
+  Badge,
+  CircularProgress,
+  Stack,
+  Tooltip,
+  Avatar,
+  Toolbar,
+  IconButton,
+  Box,
+  AppBar,
+  Alert,
+} from "@mui/material";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
@@ -30,61 +41,35 @@ export default function SearchAppBar() {
     (state) => state.searchProduct
   );
 
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [open, setOpen] = useState(false);
 
   const { products } = useSelector((state) => state.persistedReducer.cartSlice);
   const { user } = useSelector((state) => state.persistedReducer.userSlice);
 
-  const [inputSearchPro, setInputSearchPro] = useState(null);
+  // const [inputSearchPro, setInputSearchPro] = useState(null);
 
+  // const handelSearchPro = (e) => {
+  //   setInputSearchPro(e.target.value);
+  //   if (e.target.value === "") {
+  //     setInputSearchPro(null);
+  //   }
+  // };
 
-  const handelSearchPro = (e) => {
-    setInputSearchPro(e.target.value);
-    if (e.target.value === "") {
-      setInputSearchPro(null);
-    }
-  };
+  // useEffect(() => {
+  //   if (inputSearchPro !== null) {
+  //     dispatch(searchProduct(inputSearchPro));
+  //   }
+  // }, [inputSearchPro, dispatch]);
 
-  useEffect(() => {
-    if (inputSearchPro !== null) {
-      dispatch(searchProduct(inputSearchPro));
-    }
-  }, [inputSearchPro, dispatch]);
+  // const handleInputBlur = () => {
+  //   setTimeout(() => {
+  //     setInputSearchPro(null);
+  //   }, 200);
+  // };
 
-  //? Use the setTimeout the user can choose the product before removing the product list 
-  const handleInputBlur = () => {
-    setTimeout(() => {
-      setInputSearchPro(null);
-    }, 200);
-  };
-
-
-  const HandleSearchProductList = () => {
-    if (inputSearchPro !== null) {
-      if (loading) {
-        return <CircularProgress sx={{ m: "10px" }} />;
-      } else if (error) {
-        return (
-          <Alert sx={{ my: "10px" }} severity="error">
-            Make sure you are connected to the Internet
-          </Alert>
-        );
-      } else if (productSearch.length) {
-        return <SearchProductCom productSearch={productSearch} />;
-      } else if (!productSearch.length) {
-        return (
-          <Alert sx={{ my: "10px" }} severity="warning">
-            can't find products
-          </Alert>
-        );
-      }
-    } else {
-      return null;
-    }
-  };
-
+  // -
   return (
     <Box sx={{ flexGrow: 1, mt: "56px" }}>
       <AppBar
@@ -103,7 +88,7 @@ export default function SearchAppBar() {
             flexDirection: { xs: "column", sm: "row" },
           }}
         >
-          <Box
+          {/* <Box
             className="search"
             sx={{
               position: "relative",
@@ -132,7 +117,7 @@ export default function SearchAppBar() {
             >
               <HandleSearchProductList />
             </Box>
-          </Box>
+          </Box> */}
 
           <Stack
             direction="row"
@@ -177,29 +162,3 @@ export default function SearchAppBar() {
     </Box>
   );
 }
-
-
-
-  // console.log(searchref.current);
-  
-//   const handleInputFocus = () => {
-//     setBlurSearchInput(true);
-//     // console.log(true);
-//   };
-
- // const handleFocus = () => {
-  //   // console.log(searchref.current === document.activeElement);
-  //   if (searchref.current === document.activeElement) {
-
-  //     setBlurSearchInput(true)
-  //   }
-
-  //   // console.log(document.activeElement);
-  // };
-
-  // const handleBlur = () => {
-  //   // console.log(searchref.current === document.activeElement);
-  //       if (searchref.current !== document.activeElement) {
-  //         setBlurSearchInput(false);
-  //       }
-  // };

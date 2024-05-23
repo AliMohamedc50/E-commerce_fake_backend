@@ -27,7 +27,7 @@
   background-color: #1c5c6c;
 }
 .search{
-  background: #e4e4e4;
+  background: #dbdbdb;
   padding: 7px;
   border-radius: 5px;
 }
@@ -194,6 +194,7 @@
       object-fit: cover;
   }
   .swiper {
+    margin-top: 93px;
     width: 100%;
     height: calc(60vh - 66px)
   }
@@ -218,6 +219,6 @@
   }
   .swiper {
     width: 100%;
-    height: calc(100vh - 66px)
+    height: 100vh;
   }
 }

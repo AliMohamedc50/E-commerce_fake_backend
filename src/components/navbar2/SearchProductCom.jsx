@@ -1,4 +1,4 @@
-import { Divider, List, ListItem, Rating, Stack, Typography } from '@mui/material';
+import { List, ListItem, Rating, Stack, Typography } from '@mui/material';
 import React from 'react'
 import { Link } from 'react-router-dom';
 
@@ -7,11 +7,8 @@ const SearchProductCom = ({ productSearch }) => {
   const items =
     productSearch &&
     productSearch.map((ele) => (
-      <Link
-        to={`/product/${ele.id}`}
-        key={ele.id}
-      >
-        <ListItem>
+      <Link to={`/product/${ele.id}`} key={ele.id}>
+        <ListItem sx={{ mt: "3px", ":hover": { bgcolor: "#9b9b9b" } }}>
           <Stack direction="row">
             <img
               style={{ width: "70px", height: "75px", objectFit: "fill" }}
@@ -33,9 +30,9 @@ const SearchProductCom = ({ productSearch }) => {
                 readOnly
               />
             </Stack>
+            {/* <Divider  /> */}
           </Stack>
         </ListItem>
-       
       </Link>
     ));
 

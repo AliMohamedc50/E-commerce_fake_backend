@@ -1,9 +1,8 @@
 /* eslint-disable no-unused-vars */
-import React from "react";
-
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { styled } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import SearchIcon from "@mui/icons-material/Search";
 import MenuIcon from "@mui/icons-material/Menu";
 import {
   IconButton,
@@ -19,18 +18,16 @@ import {
   Toolbar,
   Typography,
   AppBar,
+  CircularProgress,
+  Alert,
 } from "@mui/material";
+import { useDispatch, useSelector } from "react-redux";
+import SearchProductCom from "../navbar2/SearchProductCom";
+import { searchProduct } from "../../Store/searchProduct/searchProduct";
 
-const StyledBadge = styled(Badge)(({ theme }) => ({
-  "& .MuiBadge-badge": {
-    right: 0,
-    top: 0,
-    border: `2px solid ${theme.palette.background.paper}`,
-    padding: "0 4px",
-  },
-}));
+import Navinfo from "./Navinfo";
 
-const drawerWidth = 240;
+const drawerWidth = 300;
 const navItems = ["Home", "About", "Contact"];
 const newLocal = [
   { cat: "Children", path: "3" },
@@ -39,6 +36,7 @@ const newLocal = [
 ];
 
 function DrawerAppBar(props) {
+
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
@@ -48,6 +46,7 @@ function DrawerAppBar(props) {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
+      
       <Box sx={{ paddingY: "8px" }}>
         <Link to="/">
           <Typography variant="h4" color="initial">
@@ -60,7 +59,7 @@ function DrawerAppBar(props) {
         {navItems.map((item, i) => (
           <Link key={i} to="/">
             <ListItem disablePadding>
-              <ListItemButton sx={{ textAlign: "start" }}>
+              <ListItemButton sx={{ textAlign: "start", color:"red" }}>
                 <ListItemText primary={item} />
               </ListItemButton>
             </ListItem>
@@ -90,11 +89,71 @@ function DrawerAppBar(props) {
 
   const container =
     window !== undefined ? () => window().document.body : undefined;
+
+  const [inputSearchPro, setInputSearchPro] = useState(null);
+  const dispatch = useDispatch();
+  const { loading, productSearch, error } = useSelector(
+    (state) => state.searchProduct
+  );
+
+// ? for handel input
+  const HandleSearchProductList = () => {
+    if (inputSearchPro !== null) {
+      if (loading) {
+        return <CircularProgress sx={{ m: "10px" }} />;
+      } else if (error) {
+        return (
+          <Alert sx={{ my: "10px" }} severity="error">
+            Make sure you are connected to the Internet
+          </Alert>
+        );
+      } else if (productSearch.length) {
+        return <SearchProductCom productSearch={productSearch} />;
+      } else if (!productSearch.length) {
+        return (
+          <Alert sx={{ my: "10px" }} severity="warning">
+            can't find products
+          </Alert>
+        );
+      }
+    } else {
+      return null;
+    }
+  };
+
+  useEffect(() => {
+    if (inputSearchPro !== null) {
+      dispatch(searchProduct(inputSearchPro));
+    }
+  }, [inputSearchPro, dispatch]);
+
+  const handelSearchPro = (e) => {
+    setInputSearchPro(e.target.value);
+    if (e.target.value === "") {
+      setInputSearchPro(null);
+    }
+  };
+
+  const handleInputBlur = () => {
+    setTimeout(() => {
+      setInputSearchPro(null);
+    }, 200);
+  };
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
-      <AppBar component="nav">
-        <Toolbar>
+      <AppBar
+        component="nav"
+        sx={{
+          paddingBottom: { xs: "6px", sm: "0px" },
+          flexWrap: "wrap",
+          backgroundImage: "linear-gradient(348deg, #1e514b, #0e7d81)",
+          // #1e514b, #408E91);
+          //  #1e514b, #0e7d81
+        }}
+      >
+        <Toolbar sx={{ display: "flex", flexWrap: "wrap" }}>
           <Typography
             variant="h5"
             component="div"
@@ -102,31 +161,20 @@ function DrawerAppBar(props) {
           >
             <Link to="/">LAMOSTORE</Link>
           </Typography>
+
           <IconButton
             color="inherit"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { md: "none" } }}
+            sx={{ order: { xs: "0", sm: "3" } }}
           >
-            <MenuIcon />
+            <MenuIcon fontSize="large" />
           </IconButton>
-
-          <Box sx={{ display: { xs: "none", sm: "none", md: "flex" } }}>
-            {newLocal.map((item, i) => (
-              <Link key={i} to={`products/${item.path}`}>
-                <Button sx={{ color: "#fff" }}>{item.cat}</Button>
-              </Link>
-            ))}
-            <Divider orientation="vertical" variant="middle" flexItem />
-            {navItems.map((item, i) => (
-              <Link key={i} to="/">
-                <Button sx={{ color: "#fff" }}>{item}</Button>
-              </Link>
-            ))}
-          </Box>
+          <Navinfo />
         </Toolbar>
       </AppBar>
+
       <nav>
         <Drawer
           container={container}
@@ -134,7 +182,7 @@ function DrawerAppBar(props) {
           open={mobileOpen}
           onClose={handleDrawerToggle}
           ModalProps={{
-            keepMounted: true, 
+            keepMounted: true,
           }}
           sx={{
             display: { xs: "block", sm: "block" },
@@ -144,10 +192,40 @@ function DrawerAppBar(props) {
             },
           }}
         >
+          <Box
+            className="search"
+            sx={{
+              position: "relative",
+              width: { xs: "100%", sm: "300px" },
+              display: "flex",
+              alignItems: "center",
+              mr: "15px",
+            }}
+          >
+            <SearchIcon />
+            <input
+              onBlur={handleInputBlur}
+              type="search"
+              onChange={(e) => handelSearchPro(e)}
+            />
+            <Box
+              sx={{
+                position: "absolute",
+                zIndex: "2000",
+                width: { xs: "100%", sm: "100%" },
+                top: "100%",
+                left: "0",
+                bgcolor: "#EEEEEE",
+                display: "flex",
+                justifyContent: "center",
+              }}
+            >
+              <HandleSearchProductList />
+            </Box>
+          </Box>
           {drawer}
         </Drawer>
       </nav>
-      
     </Box>
   );
 }

@@ -5,9 +5,9 @@ import Home from "./pages/home/Home";
 import Products from "./pages/products/Products";
 import Product from "./pages/product/Product";
 
-import React from 'react'
+import React from "react";
 import Footer from "./components/footer/Footer";
-import "./App.css"
+import "./App.css";
 import DrawerAppBar from "./components/navbar/Navbar";
 import SearchAppBar from "./components/navbar2/NaveBar2";
 import Login from "./pages/login/Login";
@@ -18,7 +18,7 @@ function Layout() {
   return (
     <div>
       <DrawerAppBar />
-      <SearchAppBar />
+      {/* <SearchAppBar /> */}
       <Outlet />
       <Footer />
     </div>
@@ -58,15 +58,12 @@ const router = createBrowserRouter([
   },
 ]);
 
-
 function App() {
-
-
   return (
     <>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -63,7 +63,7 @@ const Categories = () => {
                 />
               </Box>
               <Box
-                className="item2 bg-teal-400"
+                className="item2 "
                 sx={{ overflow: "hidden", position: "relative" }}
               >
                 <Link to={`/products/1`}>
