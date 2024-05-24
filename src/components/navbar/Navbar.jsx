@@ -20,9 +20,11 @@ import {
   Alert,
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
-import SearchProductCom from "../navbar2/SearchProductCom";
+// import SearchProductCom from "../navbar2/SearchProductCom";
+// SearchProductCom
 import { searchProduct } from "../../Store/searchProduct/searchProduct";
 import Navinfo from "./Navinfo";
+import SearchProductCom from "./SearchProductCom";
 
 const drawerWidth = 300;
 const navItems = ["Home", "About", "Contact"];
