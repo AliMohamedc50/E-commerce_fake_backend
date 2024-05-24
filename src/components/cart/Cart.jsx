@@ -41,10 +41,7 @@ const Cart = () => {
         Products in your cart
       </Typography>
       {products?.map((item) => (
-        <>
           <ItemCart item={item} key={item.id} />
-         
-        </>
       ))}
       <Divider orientation="horizontal" variant="fullWidth" />
       <Stack

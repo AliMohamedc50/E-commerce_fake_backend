@@ -32,22 +32,22 @@ const Products = () => {
         position: "relative",
         display: "flex",
         marginY: "0",
-        top: "0",
+        top: "57px",
         p: "7px",
-        pb: "50px",
+        pb: "100px",
       }}
       className="products"
     >
       <Box sx={{ width: "100%" }} className="right">
-        <Box sx={{ height: "360px" }} className="top">
+        {/* <Box sx={{ height: "360px" }} className="top">
           <img
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
             src="https://images.pexels.com/photos/3875430/pexels-photo-3875430.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
             alt=""
           />
-        </Box>
+        </Box> */}
         <Button
-        sx={{m: "20px"}}
+        sx={{m: "40px 0 22px"}}
         size='large'
         variant='outlined'
           onClick={toggleDrawer(true)}
@@ -59,7 +59,7 @@ const Products = () => {
         <Drawer open={open} onClose={toggleDrawer(false)}>
           <DrawerFilter callbacktt={callbacktt} />
         </Drawer>
-        <Box sx={{ px: "30px" }} className="bottom">
+        <Box sx={{ mb: "10px" }} className="bottom">
           <Listt
             subCats={selectedSubCategory}
             sort={sort}

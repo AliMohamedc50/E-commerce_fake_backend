@@ -13,11 +13,8 @@ import CustomizedSnackbars from '../../components/alert/Alert';
 
 const Product = () => {
   const upload_url = "http://localhost:1337";
-
   const childRef = useRef(null);
-
   const [alertText, setAlertText] = useState(null);
-
   const id = useParams().id
   const { data, loading, errorr } = useFetch(`/products/${id}?populate=*`);
   const [selectImg, setSelectImg] = useState("img")
@@ -39,15 +36,24 @@ const handelShoppingCart  = () => {
     setAlertText("You have added the product to the cart");
 }
 
-
   return (
     <Stack
-      direction={{ xs: "column-reverse", sm: "row", md: "row" }}
+      direction={{ xs: "column", sm: "row", md: "row" }}
       alignItems="center"
-      sx={{ px: {xs: "30px", sm: "10px",md :" 80px"}, py:"40px", width: "100%%", display: "flex", gap: {xs: "10px", md: "40px"}, m: "auto" }}
+      sx={{
+        px: { xs: "30px", sm: "10px", md: " 80px" },
+        py: "40px",
+        width: "100%%",
+        display: "flex",
+        gap: { xs: "10px", md: "40px" },
+        m: "60px auto 20px",
+      }}
       className="product"
     >
-      <Box sx={{ display: "flex", width: {xs :"310px"}, flex: "1", gap: "16px" }} className="left">
+      <Box
+        sx={{ display: "flex", width: { xs: "100%" }, flex: "1", gap: "16px" }}
+        className="left"
+      >
         <Stack direction="column" spacing={6} className="left">
           <img
             src={upload_url + data?.attributes?.img?.data?.attributes?.url}
@@ -89,7 +95,15 @@ const handelShoppingCart  = () => {
           />
         </Box>
       </Box>
-      <Box sx={{ flex: "1", width: {xs :"320px"}, p: {xs : "0 20px"} }} className="right">
+      <Box
+        sx={{
+          flex: "1",
+          width: { xs: "320px" },
+          p: { xs: "0 20px" },
+          textAlign: { xs: "center", sm:"start" },
+        }}
+        className="right"
+      >
         <Typography className="title" variant="h3" color="initial">
           {data?.attributes?.title}
         </Typography>
@@ -105,7 +119,7 @@ const handelShoppingCart  = () => {
         <Typography className="title" variant="p" color="initial">
           {data?.attributes?.desc}
         </Typography>
-        <Box sx={{ display: "flex", mt: "16px", mb: "32px" }}>
+        <Box sx={{ display: "block", mt: "16px", mb: "32px" }}>
           <Button
             variant="contained"
             disabled={loading ? true : false}
@@ -116,7 +130,12 @@ const handelShoppingCart  = () => {
           <Typography
             variant="p"
             color="initial"
-            sx={{ bgcolor: "#cfd8dc", paddingX: "20px", paddingY: "8px" }}
+            sx={{
+              bgcolor: "#cfd8dc",
+              paddingX: "20px",
+              paddingTop: "8px",
+              paddingBottom: "10px",
+            }}
           >
             {quantity}
           </Typography>

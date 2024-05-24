@@ -6,13 +6,10 @@ import { Box, Container, Stack, Typography, useMediaQuery } from '@mui/material'
 
 import useFetch from '../../hooks/useFetch';
 
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
 
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
-
 import { Pagination } from 'swiper/modules';
 
 const Featurproduct = ({type}) => {
@@ -22,9 +19,9 @@ const { data } = useFetch(
 );
 
   const matches = useMediaQuery("(max-width:900px)");
-// console.log(matches && matches);
+
   return (
-    <Container sx={{ my: "100px" }}>
+    <Container>
       <Stack
         direction={{ xs: "column", sm: "row" }}
         justifyContent="center"
@@ -44,10 +41,11 @@ const { data } = useFetch(
           {type} Product
         </Typography>
         <Typography
-          variant="body1"
+          variant="p"
           color="initial"
-          // sx={{ flex: "1", "& .MuiTypography-p": { marginTop: "20px" } }}
-          sx={{ flex: "1", marginTop: "20px" }}
+          sx={{
+            flex: "1",
+          }}
         >
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptatum
           sapiente
@@ -56,7 +54,7 @@ const { data } = useFetch(
       <Box sx={{ height: "500px" }}>
         <Swiper
           style={{ height: "100%" }}
-          slidesPerView={matches ? 2 : 3 }
+          slidesPerView={matches ? 2 : 3}
           spaceBetween={10}
           // pagination={{
           //   clickable: false,

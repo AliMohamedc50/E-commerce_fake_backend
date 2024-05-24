@@ -7,9 +7,8 @@ import Product from "./pages/product/Product";
 
 import React from "react";
 import Footer from "./components/footer/Footer";
-import "./App.css";
+
 import DrawerAppBar from "./components/navbar/Navbar";
-import SearchAppBar from "./components/navbar2/NaveBar2";
 import Login from "./pages/login/Login";
 import Regestration from "./pages/registration/Regestration";
 import UserProfile from "./pages/userProfile/UserProfile";

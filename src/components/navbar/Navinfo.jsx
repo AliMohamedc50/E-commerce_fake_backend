@@ -3,9 +3,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import SearchIcon from "@mui/icons-material/Search";
 import { useSelector } from "react-redux";
-import { deepPurple } from "@mui/material/colors";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Cart from "../cart/Cart";
 

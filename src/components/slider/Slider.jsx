@@ -26,12 +26,11 @@ const Slider = () => {
       }}
       navigation={true}
       modules={[Pagination, Navigation]}
-      className="mySwiper"
+      className="mySwiper swiper-first"
     >
-
       {data?.map((item, i) => (
         <SwiperSlide key={item}>
-          <img  src={data[i]} alt="" />
+          <img src={data[i]} alt="" />
         </SwiperSlide>
       ))}
     </Swiper>

@@ -5,15 +5,12 @@ import Stack from "@mui/material/Stack";
 import React from "react";
 import { Link } from "react-router-dom";
 
-// Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react';
-// Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/pagination';
 import { Pagination } from "swiper/modules";
 
 const Categories = () => {
-
     const matches = useMediaQuery("(max-width:900px)");
 
   return (
@@ -21,10 +18,7 @@ const Categories = () => {
       sx={{ height: "700px", position: "relative", overflow: "hidden" }}
       className="categories"
     >
-      <Stack
-        direction="row"
-        sx={{ height: "100%" }}
-      >
+      <Stack direction="row" sx={{ height: "100%" }}>
         <Swiper
           style={{ height: "100%" }}
           slidesPerView={matches ? 1 : 2}
@@ -33,9 +27,8 @@ const Categories = () => {
             clickable: true,
           }}
           modules={[Pagination]}
-          className="mySwiper"
+          className="mySwiper "
         >
-        
           <SwiperSlide style={{ height: "90%" }}>
             <Box sx={{ flex: 1, height: "100%" }} className="container-left">
               <Box
@@ -57,7 +50,7 @@ const Categories = () => {
                   </Button>
                 </Link>
                 <img
-                style={{objectFit: "cover"}}
+                  style={{ objectFit: "cover" }}
                   src="https://images.pexels.com/photos/19421136/pexels-photo-19421136/free-photo-of-young-woman-sitting-in-the-driveway-leaning-against-a-car.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
                   alt=""
                 />

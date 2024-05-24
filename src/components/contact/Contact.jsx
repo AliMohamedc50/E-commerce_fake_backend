@@ -4,11 +4,10 @@ import PinterestIcon from "@mui/icons-material/Pinterest";
 import GoogleIcon from "@mui/icons-material/Google";
 import TwitterIcon from "@mui/icons-material/Twitter";
 import InstagramIcon from "@mui/icons-material/Instagram";
-import { Box, Button, Container, TextField, Typography, useMediaQuery } from '@mui/material';
+import { Box, Button, Container, TextField, Typography } from '@mui/material';
 import Stack from "@mui/material/Stack";
 
 const Contact = () => {
-  // const matches = useMediaQuery('(max-width:725px)');
   return (
     <Box className='contact' sx={{background: "#1976d2"}}>
         <Container sx={{py: "7px"}}>

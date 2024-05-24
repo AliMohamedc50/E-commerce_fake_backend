@@ -155,7 +155,7 @@
   background: cadetblue;
   text-align: center;
   color: white;
-  transform: rotate(-45deg) translate(-79px, -54px);
+  transform: rotate(-45deg) translate(-39px, -8px);
   font-size: 15px;
   box-shadow: inset 0 0 2px 0px black;
 }
@@ -186,22 +186,28 @@
 .swiper-pagination-custom,
 .swiper-horizontal>.swiper-pagination-bullets,
 .swiper-pagination-bullets.swiper-pagination-horizontal {
-      bottom: var(--swiper-pagination-bottom, 45px);
-}
+      bottom: var(--swiper-pagination-bottom, 15px);
+    }
+
+/* .pagination-two {
+  bottom: var(--swiper-pagination-bottom, 62px);
+} */
 
 @media screen and (max-width: 550px) {
   .swiper-slide img {
       object-fit: cover;
   }
   .swiper {
-    margin-top: 93px;
     width: 100%;
     height: calc(60vh - 66px)
   }
-  .label { 
-    transform: rotate(-45deg) translate(-50px, -24px);
-      font-size: 13px;
+  .swiper-first{
+    margin-top: 93px;
   }
+  .label { 
+        transform: rotate(-45deg) translate(-42px, -17px);
+      font-size: 13px;
+    }
 }
 
 @media screen and (min-width: 550px) {
@@ -212,7 +218,12 @@
     width: 100%;
     height: calc(85vh - 66px)
   }
+        .label {
+        transform: rotate(-45deg) translate(-81px, -55px);
+          font-size: 13px;
+        }
 }
+
 @media screen and (min-width: 900px) {
   .swiper-slide img {
       object-fit: initial;

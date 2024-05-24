@@ -9,12 +9,10 @@ import {
   Box,
   Divider,
   Drawer,
-  Badge,
   List,
   ListItem,
   ListItemButton,
   ListItemText,
-  Button,
   Toolbar,
   Typography,
   AppBar,
@@ -24,7 +22,6 @@ import {
 import { useDispatch, useSelector } from "react-redux";
 import SearchProductCom from "../navbar2/SearchProductCom";
 import { searchProduct } from "../../Store/searchProduct/searchProduct";
-
 import Navinfo from "./Navinfo";
 
 const drawerWidth = 300;
@@ -59,7 +56,7 @@ function DrawerAppBar(props) {
         {navItems.map((item, i) => (
           <Link key={i} to="/">
             <ListItem disablePadding>
-              <ListItemButton sx={{ textAlign: "start", color:"red" }}>
+              <ListItemButton sx={{ textAlign: "start" }}>
                 <ListItemText primary={item} />
               </ListItemButton>
             </ListItem>
@@ -149,8 +146,7 @@ function DrawerAppBar(props) {
           paddingBottom: { xs: "6px", sm: "0px" },
           flexWrap: "wrap",
           backgroundImage: "linear-gradient(348deg, #1e514b, #0e7d81)",
-          // #1e514b, #408E91);
-          //  #1e514b, #0e7d81
+
         }}
       >
         <Toolbar sx={{ display: "flex", flexWrap: "wrap" }}>
